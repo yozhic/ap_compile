@@ -6,7 +6,7 @@
 @echo off
 cd %root%
 if %toolbarx%==0 (
-  echo. & echo ToolBarExtra creation is canceled
+  echo.& %cechox% {06} ToolBarExtra creation is canceled{#}{\n}
   goto :skip1
 )
 title BUILD AKELPAD: CREATE TOOLBAREXTRA SOURCE
@@ -36,7 +36,7 @@ popd
 
 :skip1
 if "%cont%"=="0" (
-  echo. & echo Resource editing is canceled
+  echo.& %cechox% {06} Resource editing is canceled{#}{\n}
   goto :skip2
 )
 
@@ -70,16 +70,15 @@ for /r "%~dp0src\AkelFiles\Plugs" %%f in (Version.rc) do if exist %%f echo Edit 
 
 echo.& %cechox% {0A}ALL VERSION.RC EDITING IS COMPLETE{#}{\n}
 
-
 :skip2
 if "%buns%"=="0" (
-  echo. & echo Extra additions is canceled
+  echo.& %cechox% {06} Extra additions is canceled{#}{\n}
   goto :skip3
 )
 
 title BUILD AKELPAD: CORRECT SOLARIZED LIGHT THEME
 echo.& echo Correct selection colors in Solarized Light Theme...
-rem :: Источник: предложение DV https://akelpad.sourceforge.net/forum/viewtopic.php?p=31774#p31774
+rem :: €бв®з­ЁЄ: ЇаҐ¤«®¦Ґ­ЁҐ DV https://akelpad.sourceforge.net/forum/viewtopic.php?p=31774#p31774
 %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.h") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'HighLight_SelTextColor #586E75\\r\\','HighLight_SelTextColor #FDF6E3\\r\\',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'HighLight_SelBkColor #FFFFFF\\r\\','HighLight_SelBkColor #586E75\\r\\',0x200001,0x1);`) ^
@@ -88,7 +87,7 @@ rem :: Источник: предложение DV https://akelpad.sourceforge.net/forum/viewtopic.
 
 title BUILD AKELPAD: ADD ONEDARKPRO THEME
 echo.& echo Add One Dark Pro Theme...
-rem :: Источник: предложение Rinat https://akelpad.sourceforge.net/forum/viewtopic.php?p=36161#p36161
+rem :: €бв®з­ЁЄ: ЇаҐ¤«®¦Ґ­ЁҐ Rinat https://akelpad.sourceforge.net/forum/viewtopic.php?p=36161#p36161
 %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.h") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'//Solarized Light variable theme', ^
           '//ONEDARKPRO variable theme\\n#define TXT_ONEDARKPRO_VARTHEME_BASIC \\\\\\nL"STR #98C379\\\\r\\\\\\nCOMM #5C6370\\\\r\\\\\\nVAR #C678DD\\\\r\\\\\\nDEL1 #E6C07B\\\\r\\\\\\nDEL2 #56B6C2\\\\r\\\\\\nTYPE #61AEEE\\\\r\\\\\\nOP #C678DD\\\\r\\\\\\nTAG #E06C75\\\\r\\\\\\nATTR #D19A66\\\\r\\\\\\nIF #C678DD\\\\r\\\\\\nAREA #BE5046\\\\r\\\\\\nNUM #E6C07B\\\\r"\\n\\n//Solarized Light variable theme', 0xA00001,0x1);`) ^
