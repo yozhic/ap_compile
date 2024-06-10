@@ -1,2 +1,2 @@
-# akelpad_compile
+# AkelPad compile
 Самостоятельная компиляция AkelPad
