@@ -1,1 +1,1 @@
-Здесь размещаем `AkelUpdater.exe`  
+_Здесь размещаем_ `AkelUpdater.exe`  

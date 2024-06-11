@@ -4,7 +4,7 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 @echo off
-title BUILD AKELPAD: COLLECT DOCS ^& INT-EXTRAS
+title BUILD AKELPAD%debugstr1%: COLLECT DOCS ^& INT-EXTRAS
 cd %root%
 
 for /r %src% %%f in (*.txt) do copy /y /v %%f %root%
@@ -37,6 +37,10 @@ copy /y /v .\AkelFiles\Plugs\Scripts\Plugs\Scripts\Include\*.* "%target%x64\Akel
 copy /y /v .\AkelFiles\Plugs\Scripts\Plugs\Scripts\Include\*.* "%target%x86_64\AkelPad\AkelFiles\Plugs\Scripts\Include\"
 
 echo.& echo.
-%cechox% {0A}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
+if "%debug%"=="0" (
+  %cechox% {0A}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
+) else (
+  %cechox% {0B}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
+)
 >nul timeout /t 2
 exit

@@ -1,8 +1,8 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-@rem :: Script.......: Š®¬¯¨«ïæ¨ï AkelPad ¨§ ¨áå®¤­¨ª®¢                       ::
+@rem :: Script.......: €¢â®¬ â¨§ æ¨ï ª®¬¯¨«ïæ¨¨ AkelPad ¨§ ¨áå®¤­¨ª®¢         ::
 @rem :: Location.....: .\                                                     ::
-@rem :: Version......: 4.1.0                                                  ::
-@rem :: C.Date/M.Date: 17.08.2022 / 07.06.2024                                ::
+@rem :: Version......: 5.0.0                                                  ::
+@rem :: C.Date/M.Date: 17.08.2022 / 11.06.2024                                ::
 @rem :: Requirements.: cecho.exe   2.0 by Thomas Polaert on codeproject.com   ::
 @rem ::                cmdmax.exe  2.0 by Antoni Sawicki on github.com        ::
 @rem ::                hscolor.exe 1.0 by Akatov Aleksej                      ::
@@ -28,26 +28,36 @@ echo.
 hscolor 7 0
 
 echo.
-%cechox% {0E}  Ž’‹€„Ž—›‰ …†ˆŒ{#}{\n}
-%cechox% {0E}  ‚ íâ®¬ à¥¦¨¬¥ ¯®á«¥ ª®¬¯¨«ïæ¨¨ ª ¦¤®£® ä ©« {#}{\n}
+%cechox% {0E}  Ž’‹€„Š€ ‘Šˆ’€ ŠŽŒˆ‹Ÿ–ˆˆ{#}{\n}
+%cechox% {0E}  ‚ à¥¦¨¬¥ ®â« ¤ª¨ ¯®á«¥ ª®¬¯¨«ïæ¨¨ ª ¦¤®£® ä ©« {#}{\n}
 %cechox% {0E}  ¢ë¯®«­¥­¨¥ áæ¥­ à¨ï ¡ã¤¥â ®áâ ­ ¢«¨¢ âìáï ­  ¯ ã§ã{#}{\n}{\n}
 %cechox%   —â®¡ë ¢ª«îç¨âì,    ¢¢®¤¨¬ {E0}1{#} ¨ ¦¬ñ¬ Enter,{\n}
 %cechox%   çâ®¡ë ­¥ ¢ª«îç âì, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter{\n}
 %cechox%                      ¨«¨ ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
 hscolor 0 10
-set /p debug=
+set /p debugcmd=
 hscolor 7 0
 
-if not "%debug%"=="1" (
-  if not "%debug%"=="0" (
-    set debug=0
+if not "%debugcmd%"=="1" (
+  if not "%debugcmd%"=="0" (
+    set debugcmd=0
   )
 )
 
+echo.& %cechox% {0E}  ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}r4416{#}:
+hscolor 10 0
+set /p rev=
+hscolor 7 0
+
+echo.& %cechox% {0E}  ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}14.08.2022{#}:
+hscolor 10 0
+set /p data=
+hscolor 7 0
+
 echo.
 %cechox% {0E}  „Ž€‚‹…ˆ… ŠŽŒŒ…’€ˆ…‚ Ž ŠŽŒˆ‹Ÿ–ˆˆ{#}{\n}
-%cechox% {0E}  1) ‚ ®ª­® About § ¯¨áì ® ­®¬¥à¥ ¨ ¤ â¥ Revision{#}{\n}
-%cechox% {0E}  2) ‚ á¢®©áâ¢  dll § ¯¨á¨ ® ­®¬¥à¥ ¨ ¤ â¥ Revision{#}{\n}{\n}
+%cechox% {0E}  1) ‚ ®ª­® About § ¯¨áì ® ­®¬¥à¥ ¨ ¤ â¥ CodeSVN revision{#}{\n}
+%cechox% {0E}  2) ‚ á¢®©áâ¢  dll § ¯¨á¨ ® ­®¬¥à¥ ¨ ¤ â¥ CodeSVN revision{#}{\n}{\n}
 %cechox%   —â®¡ë ­¥ ¤®¡ ¢«ïâì, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
 %cechox%   çâ®¡ë ¤®¡ ¢¨âì,     ¢¢®¤¨¬ {E0}1{#} ¨ ¦¬ñ¬ Enter{\n}
 %cechox%                       ¨«¨ ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
@@ -60,18 +70,6 @@ if not "%cont%"=="0" (
     set cont=1
   )
 )
-
-if "%cont%"=="0" goto :tbx
-
-echo.& %cechox% {0E}  ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}r4416{#}:
-hscolor 10 0
-set /p rev=
-hscolor 7 0
-
-echo.& %cechox% {0E}  ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}14.08.2022{#}:
-hscolor 10 0
-set /p data=
-hscolor 7 0
 
 :tbx
 echo.& %cechox% {0E}  ŠŽŒˆ‹Ÿ–ˆŸ „ŽŽ‹ˆ’…‹œŽ‰ TOOLBAR{#}{\n}
@@ -110,6 +108,10 @@ set root=%~dp0
 set src=%root%src\
 set target=%root%build\%rev%\
 set extras=%root%extras\
+set debug=0
+set debugstr1=
+set debugstr2=
+set param=
 
 if not exist %src%. (
   echo.
@@ -135,6 +137,14 @@ title BUILD AKELPAD: MAKE DIRECTORIES TREE
 echo.& echo.  Start creating Directories Tree...
 start /min /wait make_dirs.cmd
 %cechox% {0A}  DIRECTORIES TREE CREATION IS COMPLETE{#}{\n}
+>nul timeout /t 1
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD: REFRESH BACKUPS
+echo.& echo.  Start refreshing Backups...
+start /wait make_res_bkp.cmd
+%cechox% {0A}  BACKUPS REFRESHING IS COMPLETE{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

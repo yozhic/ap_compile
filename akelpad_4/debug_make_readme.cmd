@@ -7,11 +7,11 @@
 cd %target%
 
 echo.Неофициальная компиляция>README.TXT
-echo.AkelPad 4.9.9 %rev% [%data%]>>README.TXT
-echo.с плагинами (по списку на akelpad.sf.net) и AkelUpdater>>README.TXT
+echo.AkelPad 4.9.9 %rev% [%data%] с плагинами>>README.TXT
+echo.Версия отладочная (DEBUG)>>README.TXT
 echo.>>README.TXT
-echo.3 набора:>>README.TXT
-echo.32-bit; 64-bit; комбинированный>>README.TXT
+echo.2 набора:>>README.TXT
+echo.32-bit и 64-bit>>README.TXT
 echo.>>README.TXT
 echo.Последние изменения:>>README.TXT
 echo.https://sourceforge.net/p/akelpad/codesvn/%rev:~1%/log/?path=>>README.TXT
@@ -22,5 +22,9 @@ echo.   Microsoft Visual C++ Toolkit 2003>>README.TXT
 echo.   Windows Server 2003 R2 Platform SDK>>README.TXT
 echo.2) В окно About добавлена информация о CodeSVN revision.>>README.TXT
 echo.3) В свойства dll добавлен комментарий с информацией о CodeSVN revision.>>README.TXT
+echo.>>README.TXT
+echo.Комментарии к отладочной версии:>>README.TXT
+echo.1) В отладочном комплекте отсутствует комбинированный набор x86_x64. Необходимости в нём нет, поскольку его файлы идентичны файлам раздельных наборов. При этом "x64\AkelPad.exe" раздельного идентичен "AkelPad64.exe" комбинированного.>>README.TXT
+echo.2) В отладочной программе необходимо указать путь к файлам *.pdb AkelPad и проблемных плагинов. Например, в WinDbg это делается в File-^>Symbol file path.>>README.TXT
 echo.>>README.TXT
 exit
