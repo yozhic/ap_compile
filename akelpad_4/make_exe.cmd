@@ -45,6 +45,7 @@ if "%debug%"=="0" (
   del AkelPad64.exe
   del AkelPad.exe
 )
+if exist AkelPad64.ilk del AkelPad64.ilk
 
 echo.& echo.
 if "%debug%"=="0" (
