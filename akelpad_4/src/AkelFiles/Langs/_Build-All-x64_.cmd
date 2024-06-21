@@ -22,30 +22,6 @@ if "%BIT%" == "32" (
 )
 
 ::### Compile ###::
-call :COMPILE "English" 0x409
-if not %ERRORLEVEL% == 0 goto END
-
-call :COMPILE "Russian" 0x419
-if not %ERRORLEVEL% == 0 goto END
-
-call :COMPILE "Greek" 0x408
-if not %ERRORLEVEL% == 0 goto END
-
-call :COMPILE "French" 0x40C
-if not %ERRORLEVEL% == 0 goto END
-
-call :COMPILE "German" 0x407
-if not %ERRORLEVEL% == 0 goto END
-
-call :COMPILE "Italian" 0x410
-if not %ERRORLEVEL% == 0 goto END
-
-call :COMPILE "Spanish" 0x40A
-if not %ERRORLEVEL% == 0 goto END
-
-call :COMPILE "Ukrainian" 0x422
-if not %ERRORLEVEL% == 0 goto END
-
 call :COMPILE "Belorussian" 0x423
 if not %ERRORLEVEL% == 0 goto END
 
@@ -55,7 +31,7 @@ if not %ERRORLEVEL% == 0 goto END
 call :COMPILE "Catalan" 0x403
 if not %ERRORLEVEL% == 0 goto END
 
-call :COMPILE "Chinese (Simplified)" 0x403
+call :COMPILE "Chinese (Simplified)" 0x804
 if not %ERRORLEVEL% == 0 goto END
 
 call :COMPILE "Chinese (Traditional)" 0x404
@@ -67,10 +43,25 @@ if not %ERRORLEVEL% == 0 goto END
 call :COMPILE "Dutch" 0x413
 if not %ERRORLEVEL% == 0 goto END
 
+call :COMPILE "English" 0x409
+if not %ERRORLEVEL% == 0 goto END
+
 call :COMPILE "Finnish" 0x40B
 if not %ERRORLEVEL% == 0 goto END
 
+call :COMPILE "French" 0x40C
+if not %ERRORLEVEL% == 0 goto END
+
+call :COMPILE "German" 0x407
+if not %ERRORLEVEL% == 0 goto END
+
+call :COMPILE "Greek" 0x408
+if not %ERRORLEVEL% == 0 goto END
+
 call :COMPILE "Hungarian" 0x40E
+if not %ERRORLEVEL% == 0 goto END
+
+call :COMPILE "Italian" 0x410
 if not %ERRORLEVEL% == 0 goto END
 
 call :COMPILE "Japanese" 0x411
@@ -85,7 +76,16 @@ if not %ERRORLEVEL% == 0 goto END
 call :COMPILE "Romanian" 0x418
 if not %ERRORLEVEL% == 0 goto END
 
+call :COMPILE "Russian" 0x419
+if not %ERRORLEVEL% == 0 goto END
+
 call :COMPILE "Slovak" 0x41B
+if not %ERRORLEVEL% == 0 goto END
+
+call :COMPILE "Spanish" 0x40A
+if not %ERRORLEVEL% == 0 goto END
+
+call :COMPILE "Ukrainian" 0x422
 if not %ERRORLEVEL% == 0 goto END
 
 call :COMPILE "Uzbek" 0x443

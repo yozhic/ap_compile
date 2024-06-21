@@ -9,7 +9,7 @@ cd %src%
 
 if "%debug%"=="0" (
   pushd AkelFiles\Langs\
-  if %debugcmd%==0 (call _Build_.cmd /S) else (call _Build_.cmd)
+  if %debugcmd%==0 (call Build-All.cmd /S) else (call Build-All.cmd)
   popd
 )
 
