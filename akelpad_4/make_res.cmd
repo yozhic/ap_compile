@@ -58,23 +58,23 @@ if "%debug%"=="0" (
 title BUILD AKELPAD%debugstr1%: EDIT VERSION.RC
 echo.& echo Edit .\src\AkelAdmin\Resources\Version.rc
 %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelAdmin\Resources\Version.rc") ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileVersion", "0, 0, 0, 0\\\\0"','\\0\\n\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"',0x280001,0x1);`) ^
+          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 
 echo Edit .\src\AkelEdit\Resources\Version.rc
 %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelEdit\Resources\Version.rc") ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileVersion", "0, 0, 0, 0\\\\0"','\\0\\n\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"',0x280001,0x1);`) ^
+          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 
-for /r "%~dp0src\AkelFiles\Plugs" %%f in (Version.rc) do if exist %%f echo Edit %%f & %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileVersion", "0, 0, 0, 0\\\\0"','\\0\\n\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"',0x280001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
+for /r "%~dp0src\AkelFiles\Plugs" %%f in (Version.rc) do if exist %%f echo Edit %%f & %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
 
 if "%debug%"=="1" goto :skip2
 
 echo Edit .\src\AkelFiles\Langs\Resources\Version.rc
 %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Langs\Resources\Version.rc") ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileVersion", "0, 0, 0, 0\\\\0"','\\0\\n\\1VALUE "Comments", "CodeSVN revision %rev:~1% [%data%]\\\\0"',0x280001,0x1);`) ^
+          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 
