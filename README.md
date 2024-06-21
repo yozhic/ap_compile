@@ -2,7 +2,7 @@
 
 Самостоятельная компиляция AkelPad с плагинами из [исходного кода](https://sourceforge.net/p/akelpad/codesvn/HEAD/tree/).  
 
-Совместимость: [CodeSVN revision 4444](https://sourceforge.net/p/akelpad/codesvn/4444/). Набор для компиляции более ранних версий см. в ...
+Совместимость: >= [CodeSVN revision 4445](https://sourceforge.net/p/akelpad/codesvn/4445/). Набор для компиляции более ранних версий см. в ...
 
 Требования: Microsoft Visual C++ Toolkit 2003; Windows Server 2003 R2 Platform SDK; утилиты из папки [`tools`](https://github.com/yozhic/ap_compile/tree/main/akelpad_4/tools) _(путь к утилитам указываем в PATH)_.  
 

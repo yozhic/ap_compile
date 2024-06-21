@@ -1,7 +1,8 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @rem :: Script.......: Автоматизация компиляции AkelPad из исходников         ::
 @rem :: Location.....: .\                                                     ::
-@rem :: Version......: 5.0.2                                                  ::
+@rem :: Version......: 5.1.0                                                  ::
+@rem :: Compatible...: >= r4445                                               ::
 @rem :: C.Date/M.Date: 17.08.2022 / 21.06.2024                                ::
 @rem :: Requirements.: cecho.exe   2.0 by Thomas Polaert on codeproject.com   ::
 @rem ::                cmdmax.exe  2.0 by Antoni Sawicki on github.com        ::
