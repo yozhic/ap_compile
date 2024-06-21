@@ -25,6 +25,7 @@ echo.3) В свойства dll добавлен комментарий с информацией о CodeSVN revision.>>R
 echo.>>README.TXT
 echo.Комментарии к отладочной версии:>>README.TXT
 echo.1) В отладочном комплекте отсутствует комбинированный набор x86_x64. Необходимости в нём нет, поскольку его файлы идентичны файлам раздельных наборов. При этом "x64\AkelPad.exe" раздельного идентичен "AkelPad64.exe" комбинированного.>>README.TXT
-echo.2) В отладочной программе необходимо указать путь к файлам *.pdb AkelPad и проблемных плагинов. Например, в WinDbg это делается в File-^>Symbol file path.>>README.TXT
+echo.2) В отладочной программе необходимо указать путь к файлам *.pdb AkelPad и проблемных плагинов. Например, в WinDbg это делается в File-^>Symbol file path:>>README.TXT
+echo.   C:\akelpad_4\pdb;CACHE*C:\akelpad_4\cache;SRV*http://msdl.microsoft.com/download/symbols>>README.TXT
 echo.>>README.TXT
 exit
