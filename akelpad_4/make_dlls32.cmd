@@ -196,7 +196,6 @@ if "%debug%"=="0" (
 
 if "%debug%"=="1" (
   echo.
-  del /q vc?0.pdb
   move /y *.pdb "%pdb%\x86\"
 )
 
