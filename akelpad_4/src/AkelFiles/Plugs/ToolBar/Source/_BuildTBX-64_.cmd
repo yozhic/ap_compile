@@ -3,7 +3,7 @@
 @rem :: Location.....: .\src\AkelFiles\Plugs\ToolBar\Source\                  ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-::Build-Eng.cmd /S /X32 /D
+::Build.cmd /S /X32 /D
 :: /S   silent mode
 :: /X32 32-bit or /X64 64-bit
 :: /D   debug version
@@ -56,6 +56,7 @@ if exist ToolBarExtra.obj del ToolBarExtra.obj
 if exist ToolBarExtra.lib del ToolBarExtra.lib
 if exist ToolBarExtra.exp del ToolBarExtra.exp
 if exist ToolBarExtra.ilk del ToolBarExtra.ilk
+if exist vc?0.pdb del vc?0.pdb
 
 ::### End ###::
 if not "%1" == "/S" @PAUSE
