@@ -1,8 +1,8 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @rem :: Script.......: Автоматизация компиляции AkelPad из исходников         ::
 @rem :: Location.....: .\                                                     ::
-@rem :: Version......: 5.0.0                                                  ::
-@rem :: C.Date/M.Date: 17.08.2022 / 11.06.2024                                ::
+@rem :: Version......: 5.0.2                                                  ::
+@rem :: C.Date/M.Date: 17.08.2022 / 21.06.2024                                ::
 @rem :: Requirements.: cecho.exe   2.0 by Thomas Polaert on codeproject.com   ::
 @rem ::                cmdmax.exe  2.0 by Antoni Sawicki on github.com        ::
 @rem ::                hscolor.exe 1.0 by Akatov Aleksej                      ::
