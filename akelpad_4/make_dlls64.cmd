@@ -135,6 +135,8 @@ cls
 cd %root%
 
 for /r %src% %%f in (*.dll) do move /y "%%f" %root%
+if "%debug%"=="1" for /r %src% %%f in (*.pdb) do move /y "%%f" %root%
+
 echo.
 if "%debug%"=="0" (
   copy /y /v  Belorussian.dll            "%target%x64\AkelPad\AkelFiles\Langs\"
@@ -193,56 +195,10 @@ if "%debug%"=="0" (
   del *.dll
 )
 
-echo.
-cd %src%
 if "%debug%"=="1" (
-  move /y AkelFiles\Plugs\Clipboard\Source\Clipboard.pdb           "%pdb%\x64\AkelPad\AkelFiles\Plugs\Clipboard\"
-  move /y AkelFiles\Plugs\Coder\Source\Coder.pdb                   "%pdb%\x64\AkelPad\AkelFiles\Plugs\Coder\"
-  move /y AkelFiles\Plugs\ContextMenu\Source\ContextMenu.pdb       "%pdb%\x64\AkelPad\AkelFiles\Plugs\ContextMenu\"
-  move /y AkelFiles\Plugs\Exit\Source\Exit.pdb                     "%pdb%\x64\AkelPad\AkelFiles\Plugs\Exit\"
-  move /y AkelFiles\Plugs\Explorer\Source\Explorer.pdb             "%pdb%\x64\AkelPad\AkelFiles\Plugs\Explorer\"
-  move /y AkelFiles\Plugs\Fonts\Source\Fonts.pdb                   "%pdb%\x64\AkelPad\AkelFiles\Plugs\Fonts\"
-  move /y AkelFiles\Plugs\Format\Source\Format.pdb                 "%pdb%\x64\AkelPad\AkelFiles\Plugs\Format\"
-  move /y AkelFiles\Plugs\FullScreen\Source\FullScreen.pdb         "%pdb%\x64\AkelPad\AkelFiles\Plugs\FullScreen\"
-  move /y AkelFiles\Plugs\HexSel\Source\HexSel.pdb                 "%pdb%\x64\AkelPad\AkelFiles\Plugs\HexSel\"
-  move /y AkelFiles\Plugs\Hotkeys\Source\Hotkeys.pdb               "%pdb%\x64\AkelPad\AkelFiles\Plugs\Hotkeys\"
-  move /y AkelFiles\Plugs\LineBoard\Source\LineBoard.pdb           "%pdb%\x64\AkelPad\AkelFiles\Plugs\LineBoard\"
-  move /y AkelFiles\Plugs\Log\Source\Log.pdb                       "%pdb%\x64\AkelPad\AkelFiles\Plugs\Log\"
-  move /y AkelFiles\Plugs\Macros\Source\Macros.pdb                 "%pdb%\x64\AkelPad\AkelFiles\Plugs\Macros\"
-  move /y AkelFiles\Plugs\MinimizeToTray\Source\MinimizeToTray.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\MinimizeToTray\"
-  move /y AkelFiles\Plugs\RecentFiles\Source\RecentFiles.pdb       "%pdb%\x64\AkelPad\AkelFiles\Plugs\RecentFiles\"
-  move /y AkelFiles\Plugs\SaveFile\Source\SaveFile.pdb             "%pdb%\x64\AkelPad\AkelFiles\Plugs\SaveFile\"
-  move /y AkelFiles\Plugs\Scripts\Source\Scripts.pdb               "%pdb%\x64\AkelPad\AkelFiles\Plugs\Scripts\"
-  move /y AkelFiles\Plugs\Scroll\Source\Scroll.pdb                 "%pdb%\x64\AkelPad\AkelFiles\Plugs\Scroll\"
-  move /y AkelFiles\Plugs\Sessions\Source\Sessions.pdb             "%pdb%\x64\AkelPad\AkelFiles\Plugs\Sessions\"
-  move /y AkelFiles\Plugs\Sounds\Source\Sounds.pdb                 "%pdb%\x64\AkelPad\AkelFiles\Plugs\Sounds\"
-  move /y AkelFiles\Plugs\SpecialChar\Source\SpecialChar.pdb       "%pdb%\x64\AkelPad\AkelFiles\Plugs\SpecialChar\"
-  move /y AkelFiles\Plugs\Stats\Source\Stats.pdb                   "%pdb%\x64\AkelPad\AkelFiles\Plugs\Stats\"
-  move /y AkelFiles\Plugs\ToolBar\Source\ToolBar.pdb               "%pdb%\x64\AkelPad\AkelFiles\Plugs\ToolBar\"
   echo.
-  move /y      AkelFiles\Plugs\Clipboard\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Clipboard\"
-  move /y          AkelFiles\Plugs\Coder\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Coder\"
-  move /y    AkelFiles\Plugs\ContextMenu\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\ContextMenu\"
-  move /y           AkelFiles\Plugs\Exit\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Exit\"
-  move /y       AkelFiles\Plugs\Explorer\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Explorer\"
-  move /y          AkelFiles\Plugs\Fonts\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Fonts\"
-  move /y         AkelFiles\Plugs\Format\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Format\"
-  move /y     AkelFiles\Plugs\FullScreen\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\FullScreen\"
-  move /y         AkelFiles\Plugs\HexSel\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\HexSel\"
-  move /y        AkelFiles\Plugs\Hotkeys\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Hotkeys\"
-  move /y      AkelFiles\Plugs\LineBoard\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\LineBoard\"
-  move /y            AkelFiles\Plugs\Log\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Log\"
-  move /y         AkelFiles\Plugs\Macros\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Macros\"
-  move /y AkelFiles\Plugs\MinimizeToTray\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\MinimizeToTray\"
-  move /y    AkelFiles\Plugs\RecentFiles\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\RecentFiles\"
-  move /y       AkelFiles\Plugs\SaveFile\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\SaveFile\"
-  move /y        AkelFiles\Plugs\Scripts\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Scripts\"
-  move /y         AkelFiles\Plugs\Scroll\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Scroll\"
-  move /y       AkelFiles\Plugs\Sessions\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Sessions\"
-  move /y         AkelFiles\Plugs\Sounds\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Sounds\"
-  move /y    AkelFiles\Plugs\SpecialChar\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\SpecialChar\"
-  move /y          AkelFiles\Plugs\Stats\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\Stats\"
-  move /y        AkelFiles\Plugs\ToolBar\Source\vc80.pdb "%pdb%\x64\AkelPad\AkelFiles\Plugs\ToolBar\"
+  del /q vc?0.pdb
+  move /y *.pdb "%pdb%\x64\"
 )
 
 echo.& echo.

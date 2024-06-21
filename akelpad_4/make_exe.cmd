@@ -9,17 +9,13 @@ cd %root%
 
 pushd src\
 if %debugcmd%==0 (call Build-Eng.cmd /S /X32 %param%) else (call Build-Eng.cmd /N /X32 %param%)
-if "%debug%"=="1" (
-  move /y AkelPad.pdb "%pdb%\x86\AkelPad\"
-  move /y vc70.pdb    "%pdb%\x86\AkelPad\"
-)
+if "%debug%"=="1" move /y AkelPad.pdb "%pdb%\x86\"
 
 cls
 if %debugcmd%==0 (call _Build-Eng-x64_.cmd /S /X64 %param%) else (call _Build-Eng-x64_.cmd /N /X64 %param%)
 if "%debug%"=="1" (
-  copy /v /y AkelPad64.pdb "%pdb%\x64\AkelPad\AkelPad.pdb"
-  move    /y vc80.pdb      "%pdb%\x64\AkelPad\"
-  del AkelPad64.pdb
+  copy /v /y AkelPad64.pdb "%pdb%\x64\AkelPad.pdb"
+  move    /y AkelPad64.pdb "%pdb%\"
 )
 
 cls
