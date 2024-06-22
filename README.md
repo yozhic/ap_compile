@@ -24,4 +24,4 @@ akelpad_4\
 Файл `AkelUpdater.exe` и файлы плагинов от других разработчиков размещаем в [`extras`](./akelpad_4/extras).  
 
 Для компиляции обычной версии запускаем [`build.cmd`](./akelpad_4/build.cmd) .  
-Для компиляции отладочной версии запускаем [`debug_build.cmd`](./akelpad_4/debug_build.cmd) .  
+Для компиляции отладочной версии запускаем [`build_debug.cmd`](./akelpad_4/build_debug.cmd) .  
