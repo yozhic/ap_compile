@@ -1,12 +1,12 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @rem :: Script.......: €¢â®¬ â¨§ æ¨ï ª®¬¯¨«ïæ¨¨ AkelPad ¨§ ¨áå®¤­¨ª®¢         ::
 @rem :: Location.....: .\                                                     ::
-@rem :: Version......: 5.1.0                                                  ::
+@rem :: Version......: 5.2.0                                                  ::
 @rem :: Compatible...: >= r4445                                               ::
-@rem :: C.Date/M.Date: 17.08.2022 / 21.06.2024                                ::
-@rem :: Requirements.: cecho.exe   2.0 by Thomas Polaert on codeproject.com   ::
-@rem ::                cmdmax.exe  2.0 by Antoni Sawicki on github.com        ::
-@rem ::                hscolor.exe 1.0 by Akatov Aleksej                      ::
+@rem :: C.Date/M.Date: 17.08.2022 / 22.06.2024                                ::
+@rem :: Requirements.: cecho.exe   2.0 by Thomas Polaert  on codeproject.com  ::
+@rem ::                cmdmax.exe  2.0 by Antoni Sawicki  on github.com       ::
+@rem ::                cocolor.exe 2.1 by Horst Schaeffer on horstmuc.de      ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 @echo off
@@ -18,7 +18,7 @@ call reqcheck.cmd
 call cmdmax 0 0 160 80 160 80
 
 cls
-hscolor 2 0
+call cocolor 02
 echo.
 echo.  ÜÜÜÜÜÜÜÜÜ   ÜÜÜÜ   ÜÜÜÜ   ÜÜÜÜÜÜÜÜÜÜ  ÜÜÜÜ         ÜÜÜÜÜÜÜÜÜÜ    ÜÜÜÜÜÜÜÜÜ   ÜÜÜÜÜÜÜÜÜÜ  
 echo. ÛÛÛ²ÚÄ ÛÛÛ²¿ ÛÛÛ²³  ÛÛÛ²³ ÛÛÛ²ÚÄ ÛÛÛ²³ ÛÛÛ²³°°°°°°° ÛÛÛ²ÚÄ ÛÛÛ²¿ ÛÛÛ²ÚÄ ÛÛÛ²¿ ÛÛÛ²ÚÄ ÛÛÛ²¿
@@ -29,7 +29,7 @@ echo.  ÄÄÄÙ   ÄÄÄÙ  ÄÄÄÙ   ÄÄÄÙ    ÄÄÄÄÄÄÄÄÙ    ÄÄÄÄÄÄÄÄÙ  ÄÄÄÙ         ÄÄÄÙ   Ä
 echo. ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
 echo. ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
 echo.
-hscolor 7 0
+call cocolor 07
 
 echo.
 %cechox% {0E}  Ž’‹€„Š€ ‘Šˆ’€ ŠŽŒˆ‹Ÿ–ˆˆ{#}{\n}
@@ -38,9 +38,9 @@ echo.
 %cechox%   —â®¡ë ¢ª«îç¨âì,    ¢¢®¤¨¬ {E0}1{#} ¨ ¦¬ñ¬ Enter,{\n}
 %cechox%   çâ®¡ë ­¥ ¢ª«îç âì, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter{\n}
 %cechox%                      ¨«¨ ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
-hscolor 0 10
+call cocolor A0
 set /p debugcmd=
-hscolor 7 0
+call cocolor 07
 
 if not "%debugcmd%"=="1" (
   if not "%debugcmd%"=="0" (
@@ -49,14 +49,14 @@ if not "%debugcmd%"=="1" (
 )
 
 echo.& %cechox% {0E}  ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}r4416{#}:
-hscolor 10 0
+call cocolor 0A
 set /p rev=
-hscolor 7 0
+call cocolor 07
 
 echo.& %cechox% {0E}  ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}14.08.2022{#}:
-hscolor 10 0
+call cocolor 0A
 set /p data=
-hscolor 7 0
+call cocolor 07
 
 echo.
 %cechox% {0E}  „Ž€‚‹…ˆ… ŠŽŒŒ…’€ˆ…‚ Ž ŠŽŒˆ‹Ÿ–ˆˆ{#}{\n}
@@ -65,9 +65,9 @@ echo.
 %cechox%   —â®¡ë ­¥ ¤®¡ ¢«ïâì, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
 %cechox%   çâ®¡ë ¤®¡ ¢¨âì,     ¢¢®¤¨¬ {E0}1{#} ¨ ¦¬ñ¬ Enter{\n}
 %cechox%                       ¨«¨ ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
-hscolor 0 10
+call cocolor A0
 set /p cont=
-hscolor 7 0
+call cocolor 07
 
 if not "%cont%"=="0" (
   if not "%cont%"=="1" (
@@ -80,9 +80,9 @@ echo.& %cechox% {0E}  ŠŽŒˆ‹Ÿ–ˆŸ „ŽŽ‹ˆ’…‹œŽ‰ TOOLBAR{#}{\n}
 %cechox%   —â®¡ë ­¥ ª®¬¯¨«¨à®¢ âì, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
 %cechox%   çâ®¡ë ª®¬¯¨«¨à®¢ âì,    ¢¢®¤¨¬ {E0}1{#} ¨ ¦¬ñ¬ Enter{\n}
 %cechox%                           ¨«¨ ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
-hscolor 0 10
+call cocolor A0
 set /p toolbarx=
-hscolor 7 0
+call cocolor 07
 
 if not "%toolbarx%"=="0" (
   if not "%toolbarx%"=="1" (
@@ -97,9 +97,9 @@ echo.
 %cechox%   —â®¡ë ­¥ ¤¥« âì, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
 %cechox%   çâ®¡ë ¤¥« âì,    ¢¢®¤¨¬ {E0}1{#} ¨ ¦¬ñ¬ Enter{\n}
 %cechox%                    ¨«¨ ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
-hscolor 0 10
+call cocolor A0
 set /p buns=
-hscolor 7 0
+call cocolor 07
 
 if not "%buns%"=="0" (
   if not "%buns%"=="1" (
@@ -207,7 +207,7 @@ start /min /wait make_readme.cmd
 %cechox% {0A}  README.TXT IS CREATED{#}{\n}
 %cechox% {0A}  BUILDING HAVE DONE{#}{\n}
 echo.
-hscolor 2 0
+call cocolor 02
 echo. ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
 echo. ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
 >nul timeout /t 15

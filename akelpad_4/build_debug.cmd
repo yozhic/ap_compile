@@ -12,7 +12,7 @@ call reqcheck.cmd
 call cmdmax 0 0 160 80 160 80
 
 cls
-hscolor 11 0
+call cocolor 0B
 echo.
 echo.   ßÛÞßÛÛÛ ßÛÞ ÛÛÛ ßÛÞßÛÛÛ ßÛÞß    ßÛÞßÛÛÛ ßÛÞßÛÛÛ ßÛÞßÛÛÛ        o       o                
 echo.    ÛÞÜÛÛÛ  ÛÞÜÛÛß  ÛÞÜ     ÛÞ      ÛÞ ÛÛÛ  ÛÞÜÛÛÛ  ÛÞ ÛÛÛ         \_____/                 
@@ -25,39 +25,39 @@ echo.   ßßßßßßß ßßßßßßß ßßßßßßß ßßßßßßß ßßßßßßß                            \____
 echo. ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
 echo. ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
 echo.
-hscolor 7 0
+call cocolor 07
 
 if not "%1"=="" set rev=%1
 if not "%2"=="" set data=%2
 
 if "%rev%"=="" (
   echo.& %cechox% {0E}  ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}r4416{#}:
-  hscolor 11 0
+  call cocolor 0B
   set /p rev=
-  hscolor 7 0
+  call cocolor 07
 )
 
 if "%data%"=="" (
   echo.& %cechox% {0E}  ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}14.08.2022{#}:
-  hscolor 11 0
+  call cocolor 0B
   set /p data=
-  hscolor 7 0
+  call cocolor 07
 )
 
 :skip
-hscolor 11 0
+call cocolor 0B
 echo.
 echo.  ŽŒ… …„€Š–ˆˆ: %rev%
 echo.  „€’€  …„€Š–ˆˆ: %data%
-hscolor 7 0
+call cocolor 07
 
 echo.
 %cechox% {0E}  ‚áñ ¯à ¢¨«ì­®? à®¤®«¦ ¥¬?{#}{\n}
 %cechox%   …á«¨ ­¥ ¯à ¢¨«ì­®, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
 %cechox%   ¥á«¨    ¯à ¢¨«ì­®, ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
-hscolor 0 11
+call cocolor B0
 set /p err=
-hscolor 7 0
+call cocolor 07
 
 if "%err%"=="0" goto :eof
 if not "%err%"=="" goto :eof
@@ -140,7 +140,7 @@ start /min /wait debug_make_readme.cmd
 %cechox% {0B}  README.TXT IS CREATED{#}{\n}
 %cechox% {0B}  BUILDING HAVE DONE{#}{\n}
 echo.
-hscolor 11 0
+call cocolor 0B
 echo. ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
 echo. ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
 >nul timeout /t 15
