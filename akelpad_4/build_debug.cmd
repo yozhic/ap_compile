@@ -31,14 +31,14 @@ if not "%1"=="" set rev=%1
 if not "%2"=="" set data=%2
 
 if "%rev%"=="" (
-  echo.& %cechox% {0E}  ВВОДИМ НОМЕР РЕДАКЦИИ{#}{\n}  например, {0E}r4416{#}:
+  echo.& "%cechox%" {0E}  ВВОДИМ НОМЕР РЕДАКЦИИ{#}{\n}  например, {0E}r4416{#}:
   call cocolor 0B
   set /p rev=
   call cocolor 07
 )
 
 if "%data%"=="" (
-  echo.& %cechox% {0E}  ВВОДИМ ДАТУ РЕДАКЦИИ{#}{\n}  например, {0E}14.08.2022{#}:
+  echo.& "%cechox%" {0E}  ВВОДИМ ДАТУ РЕДАКЦИИ{#}{\n}  например, {0E}14.08.2022{#}:
   call cocolor 0B
   set /p data=
   call cocolor 07
@@ -52,9 +52,9 @@ echo.  ДАТА  РЕДАКЦИИ: %data%
 call cocolor 07
 
 echo.
-%cechox% {0E}  Всё правильно? Продолжаем?{#}{\n}
-%cechox%   Если не правильно, вводим {E0}0{#} и жмём Enter,{\n}
-%cechox%   если    правильно, просто жмём {E0}Enter{#}:
+"%cechox%" {0E}  Всё правильно? Продолжаем?{#}{\n}
+"%cechox%"   Если не правильно, вводим {E0}0{#} и жмём Enter,{\n}
+"%cechox%"   если    правильно, просто жмём {E0}Enter{#}:
 call cocolor B0
 set /p err=
 call cocolor 07
@@ -77,9 +77,9 @@ set pdb=%target%pdb
 
 if not exist %src%. (
   echo.
-  %cechox% {0C}  Должна быть папка{#} {C0}src{#} {0C}и в ней файлы исходников{#}{\n}
-  %cechox% {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
-  %cechox% {0C}  Прекращаем выполнение сценария{#}{\n}
+  "%cechox%" {0C}  Должна быть папка{#} {C0}src{#} {0C}и в ней файлы исходников{#}{\n}
+  "%cechox%" {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
+  "%cechox%" {0C}  Прекращаем выполнение сценария{#}{\n}
   pause>NUL
   exit
 )
@@ -89,7 +89,7 @@ rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 title BUILD AKELPAD DEBUG: MAKE DIRECTORIES TREE
 echo.& echo.  Start creating Directories Tree...
 start /min /wait debug_make_dirs.cmd
-%cechox% {0B}  DIRECTORIES TREE CREATION IS COMPLETE{#}{\n}
+"%cechox%" {0B}  DIRECTORIES TREE CREATION IS COMPLETE{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -97,7 +97,7 @@ rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 title BUILD AKELPAD DEBUG: REFRESH BACKUPS
 echo.& echo.  Start refreshing Backups...
 start /wait make_res_bkp.cmd
-%cechox% {0B}  BACKUPS REFRESHING IS COMPLETE{#}{\n}
+"%cechox%" {0B}  BACKUPS REFRESHING IS COMPLETE{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -105,7 +105,7 @@ rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 title BUILD AKELPAD DEBUG: MAKE RESOURCES
 echo.& echo.  Start creating Resources...
 start /wait make_res.cmd
-%cechox% {0B}  RESOURCES CREATION IS COMPLETE{#}{\n}
+"%cechox%" {0B}  RESOURCES CREATION IS COMPLETE{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -113,7 +113,7 @@ rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 title BUILD AKELPAD DEBUG: MAKE x86-x64 EXE
 echo.& echo.  Start compiling Executables...
 start /wait make_exe.cmd
-%cechox% {0B}  EXECUTABLES COMPILATION IS COMPLETE{#}{\n}
+"%cechox%" {0B}  EXECUTABLES COMPILATION IS COMPLETE{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -121,7 +121,7 @@ rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 title BUILD AKELPAD DEBUG: MAKE x86 DLLS
 echo.& echo.  Start compiling x86 DLLS...
 start /wait make_dlls32.cmd
-%cechox% {0B}  x86 DLLS COMPILATION IS COMPLETE{#}{\n}
+"%cechox%" {0B}  x86 DLLS COMPILATION IS COMPLETE{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -129,7 +129,7 @@ rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 title BUILD AKELPAD DEBUG: MAKE x64 DLLS
 echo.& echo.  Start compiling x64 DLLS...
 start /wait make_dlls64.cmd
-%cechox% {0B}  x64 DLLS COMPILATION IS COMPLETE{#}{\n}
+"%cechox%" {0B}  x64 DLLS COMPILATION IS COMPLETE{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -137,8 +137,8 @@ rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 title BUILD AKELPAD DEBUG: CREATE README.TXT
 echo.& echo.  Start creating ReadMe.txt...
 start /min /wait debug_make_readme.cmd
-%cechox% {0B}  README.TXT IS CREATED{#}{\n}
-%cechox% {0B}  BUILDING HAVE DONE{#}{\n}
+"%cechox%" {0B}  README.TXT IS CREATED{#}{\n}
+"%cechox%" {0B}  BUILDING HAVE DONE{#}{\n}
 echo.
 call cocolor 0B
 echo. ┌────────────────────────────────────────────────────────────────────────────────────────┐

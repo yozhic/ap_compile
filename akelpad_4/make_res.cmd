@@ -16,7 +16,7 @@ pushd src\AkelFiles\Plugs\ToolBar\Source\
 type ToolBar.c > ToolBarExtra.c
 >nul timeout /t 1
 
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\ToolBar\Source\ToolBarExtra.c") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\ToolBar\Source\ToolBarExtra.c") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'pv-^>pPluginName="ToolBar";','pv-^>pPluginName="ToolBarExtra";',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
@@ -26,7 +26,7 @@ echo Make ToolBarExtra.rc ...
 type ToolBar.rc > ToolBarExtra.rc
 >nul timeout /t 1
 
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\ToolBar\Source\Resources\ToolBarExtra.rc") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\ToolBar\Source\Resources\ToolBarExtra.rc") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,"(?m)^IDI_ICON_(0[1-9]|[12][0-9]|3[0-8])\\x20+ICON\\x20+DISCARDABLE\\x20+\\x22(0[1-9]|[12][0-9]|3[0-8])\\.ico\\x22\\n",'',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'"00.ico"','"38.ico"',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
@@ -44,7 +44,7 @@ if "%cont%"=="0" (
 
 title BUILD AKELPAD%debugstr1%: EDIT ABOUT INFO
 echo.& echo Edit About window Info...
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\Edit.h") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\Edit.h") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'AkelPad 4.9.9 (x64)','AkelPad 4.9.9 (x64) [%rev%]%debugstr1%',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'AkelPad 4.9.9 (x86)','AkelPad 4.9.9 (x86) [%rev%]%debugstr1%',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
@@ -57,28 +57,28 @@ if "%debug%"=="0" (
 
 title BUILD AKELPAD%debugstr1%: EDIT VERSION.RC
 echo.& echo Edit .\src\AkelAdmin\Resources\Version.rc
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelAdmin\Resources\Version.rc") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelAdmin\Resources\Version.rc") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 
 echo Edit .\src\AkelEdit\Resources\Version.rc
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelEdit\Resources\Version.rc") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelEdit\Resources\Version.rc") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 
-for /r "%~dp0src\AkelFiles\Plugs" %%f in (Version.rc) do if exist %%f echo Edit %%f & %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
+for /r "%~dp0src\AkelFiles\Plugs" %%f in (Version.rc) do if exist %%f echo Edit %%f & "%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
 
 if "%debug%"=="1" goto :skip2
 
 echo Edit .\src\AkelFiles\Langs\Resources\Version.rc
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Langs\Resources\Version.rc") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Langs\Resources\Version.rc") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 
-for /r "%~dp0src\AkelFiles\Langs\Resources" %%f in (*.rc) do if exist %%f echo Edit %%f & %AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'2006-2017','2006-2024',0x200001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
+for /r "%~dp0src\AkelFiles\Langs\Resources" %%f in (*.rc) do if exist %%f echo Edit %%f & "%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'2006-2017','2006-2024',0x200001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
 
 :skip2
 echo.
@@ -97,7 +97,7 @@ if "%buns%"=="0" (
 title BUILD AKELPAD: CORRECT SOLARIZED LIGHT THEME
 echo.& echo Correct selection colors in Solarized Light Theme...
 rem :: Источник: предложение DV https://akelpad.sourceforge.net/forum/viewtopic.php?p=31774#p31774
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.h") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.h") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'HighLight_SelTextColor #586E75\\r\\','HighLight_SelTextColor #FDF6E3\\r\\',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'HighLight_SelBkColor #FFFFFF\\r\\','HighLight_SelBkColor #586E75\\r\\',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
@@ -107,7 +107,7 @@ rem :: Источник: предложение DV https://akelpad.sourceforge.net/forum/viewtopic.
 title BUILD AKELPAD: ADD ONEDARKPRO THEME
 echo.& echo Add One Dark Pro Theme...
 rem :: Источник: предложение Rinat https://akelpad.sourceforge.net/forum/viewtopic.php?p=36161#p36161
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.h") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.h") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'//Solarized Light variable theme', ^
           '//ONEDARKPRO variable theme\\n#define TXT_ONEDARKPRO_VARTHEME_BASIC \\\\\\nL"STR #98C379\\\\r\\\\\\nCOMM #5C6370\\\\r\\\\\\nVAR #C678DD\\\\r\\\\\\nDEL1 #E6C07B\\\\r\\\\\\nDEL2 #56B6C2\\\\r\\\\\\nTYPE #61AEEE\\\\r\\\\\\nOP #C678DD\\\\r\\\\\\nTAG #E06C75\\\\r\\\\\\nATTR #D19A66\\\\r\\\\\\nIF #C678DD\\\\r\\\\\\nAREA #BE5046\\\\r\\\\\\nNUM #E6C07B\\\\r"\\n\\n//Solarized Light variable theme', 0xA00001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'//Solarized Light variable theme', ^
@@ -126,7 +126,7 @@ rem :: Источник: предложение Rinat https://akelpad.sourceforge.net/forum/viewtop
           '#define TXT_ONEDARKPRO_VARTHEME (TXT_ONEDARKPRO_VARTHEME_BASIC TXT_ONEDARKPRO_VARTHEME_HIGHLIGHT TXT_ONEDARKPRO_VARTHEME_CODEFOLD TXT_ONEDARKPRO_VARTHEME_AUTOCOMPLETE TXT_ONEDARKPRO_VARTHEME_LINEBOARD TXT_ONEDARKPRO_VARTHEME_SPECIALCHAR TXT_ONEDARKPRO_VARTHEME_SESSIONS)\\n\\n//Solarized Light variable theme', 0xA00001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
-%AKELPAD% /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.c") ^
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.c") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'\^( +)(\\{L"Obsidian", TXT_OBSIDIAN_VARTHEME\\},)','\\1\\2\\n\\1{L"One Dark Pro", TXT_ONEDARKPRO_VARTHEME},',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit

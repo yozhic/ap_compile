@@ -7,28 +7,34 @@ if exist .\tools\nul PATH %~dp0tools;%PATH%
 
 setlocal enabledelayedexpansion
 for %%x in (cmdmax.exe,cmdmax.cmd) do (set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :next1)
-endlocal
-goto :requirements
+call :requirements cmdmax
 
 :next1
-endlocal
-if not defined cocolor (
-  set cocolor=%~dp0tools\cocolor.exe
-  if not exist "%cocolor%" goto :requirements
-)
+for %%x in (cocolor.exe,cocolor.cmd) do (set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :next2)
+call :requirements cocolor
 
 :next2
 if not defined cechox (
   set cechox=%~dp0tools\cecho.exe
-  if not exist "%cechox%" goto :requirements
+  if not exist "%cechox%" call :requirements cecho
 )
-if not defined AKELPAD goto :requirements
+if not defined AKELPAD (
+  if "%*"=="" (
+    set AKELPAD=%~dp0tools\AkelPad.exe
+  ) else (
+    set AKELPAD=%*
+  )
+  if not exist "!AKELPAD!" call :requirements !AKELPAD!
+)
+if not exist "c:\Program Files\Microsoft Platform SDK\Bin\win64\cl.exe" call :requirements Microsoft Platform SDK
+if not exist "c:\Program Files\Microsoft Visual C++ Toolkit 2003\bin\cl.exe" call :requirements Microsoft Visual C++ Toolkit 2003
 
+endlocal
 goto :EOF
 
 :requirements
 echo.
-echo. Необходимые утилиты не найдены
+echo. Не найдены необходимые утилиты: %*
 echo. Выполнение сценария прервано
 pause>nul
 exit

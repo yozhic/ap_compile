@@ -13,7 +13,7 @@
 >nul chcp 866
 title BUILD AKELPAD: DECLARE VARIABLES
 
-call reqcheck.cmd
+call reqcheck.cmd %~1
 
 call cmdmax 0 0 160 80 160 80
 
@@ -32,12 +32,12 @@ echo.
 call cocolor 07
 
 echo.
-%cechox% {0E}  ОТЛАДКА СКРИПТА КОМПИЛЯЦИИ{#}{\n}
-%cechox% {0E}  В режиме отладки после компиляции каждого файла{#}{\n}
-%cechox% {0E}  выполнение сценария будет останавливаться на паузу{#}{\n}{\n}
-%cechox%   Чтобы включить,    вводим {E0}1{#} и жмём Enter,{\n}
-%cechox%   чтобы не включать, вводим {E0}0{#} и жмём Enter{\n}
-%cechox%                      или просто жмём {E0}Enter{#}:
+"%cechox%" {0E}  ОТЛАДКА СКРИПТА КОМПИЛЯЦИИ{#}{\n}
+"%cechox%" {0E}  В режиме отладки после компиляции каждого файла{#}{\n}
+"%cechox%" {0E}  выполнение сценария будет останавливаться на паузу{#}{\n}{\n}
+"%cechox%"   Чтобы включить,    вводим {E0}1{#} и жмём Enter,{\n}
+"%cechox%"   чтобы не включать, вводим {E0}0{#} и жмём Enter{\n}
+"%cechox%"                      или просто жмём {E0}Enter{#}:
 call cocolor A0
 set /p debugcmd=
 call cocolor 07
@@ -48,23 +48,23 @@ if not "%debugcmd%"=="1" (
   )
 )
 
-echo.& %cechox% {0E}  ВВОДИМ НОМЕР РЕДАКЦИИ{#}{\n}  например, {0E}r4416{#}:
+echo.& "%cechox%" {0E}  ВВОДИМ НОМЕР РЕДАКЦИИ{#}{\n}  например, {0E}r4416{#}:
 call cocolor 0A
 set /p rev=
 call cocolor 07
 
-echo.& %cechox% {0E}  ВВОДИМ ДАТУ РЕДАКЦИИ{#}{\n}  например, {0E}14.08.2022{#}:
+echo.& "%cechox%" {0E}  ВВОДИМ ДАТУ РЕДАКЦИИ{#}{\n}  например, {0E}14.08.2022{#}:
 call cocolor 0A
 set /p data=
 call cocolor 07
 
 echo.
-%cechox% {0E}  ДОБАВЛЕНИЕ КОММЕНТАРИЕВ О КОМПИЛЯЦИИ{#}{\n}
-%cechox% {0E}  1) В окно About запись о номере и дате CodeSVN revision{#}{\n}
-%cechox% {0E}  2) В свойства dll записи о номере и дате CodeSVN revision{#}{\n}{\n}
-%cechox%   Чтобы не добавлять, вводим {E0}0{#} и жмём Enter,{\n}
-%cechox%   чтобы добавить,     вводим {E0}1{#} и жмём Enter{\n}
-%cechox%                       или просто жмём {E0}Enter{#}:
+"%cechox%" {0E}  ДОБАВЛЕНИЕ КОММЕНТАРИЕВ О КОМПИЛЯЦИИ{#}{\n}
+"%cechox%" {0E}  1) В окно About запись о номере и дате CodeSVN revision{#}{\n}
+"%cechox%" {0E}  2) В свойства dll записи о номере и дате CodeSVN revision{#}{\n}{\n}
+"%cechox%"   Чтобы не добавлять, вводим {E0}0{#} и жмём Enter,{\n}
+"%cechox%"   чтобы добавить,     вводим {E0}1{#} и жмём Enter{\n}
+"%cechox%"                       или просто жмём {E0}Enter{#}:
 call cocolor A0
 set /p cont=
 call cocolor 07
@@ -76,10 +76,10 @@ if not "%cont%"=="0" (
 )
 
 :tbx
-echo.& %cechox% {0E}  КОМПИЛЯЦИЯ ДОПОЛНИТЕЛЬНОЙ TOOLBAR{#}{\n}
-%cechox%   Чтобы не компилировать, вводим {E0}0{#} и жмём Enter,{\n}
-%cechox%   чтобы компилировать,    вводим {E0}1{#} и жмём Enter{\n}
-%cechox%                           или просто жмём {E0}Enter{#}:
+echo.& "%cechox%" {0E}  КОМПИЛЯЦИЯ ДОПОЛНИТЕЛЬНОЙ TOOLBAR{#}{\n}
+"%cechox%"   Чтобы не компилировать, вводим {E0}0{#} и жмём Enter,{\n}
+"%cechox%"   чтобы компилировать,    вводим {E0}1{#} и жмём Enter{\n}
+"%cechox%"                           или просто жмём {E0}Enter{#}:
 call cocolor A0
 set /p toolbarx=
 call cocolor 07
@@ -91,12 +91,12 @@ if not "%toolbarx%"=="0" (
 )
 
 echo.
-%cechox% {0E}  ДРУГИЕ ДОПОЛНЕНИЯ{#}{\n}
-%cechox% {0E}  1) Коррекция цвета выделения в теме Solarized Light (предложение DV){#}{\n}
-%cechox% {0E}  2) Цветовая тема One Dark Pro (предложение Rinat){#}{\n}{\n}
-%cechox%   Чтобы не делать, вводим {E0}0{#} и жмём Enter,{\n}
-%cechox%   чтобы делать,    вводим {E0}1{#} и жмём Enter{\n}
-%cechox%                    или просто жмём {E0}Enter{#}:
+"%cechox%" {0E}  ДРУГИЕ ДОПОЛНЕНИЯ{#}{\n}
+"%cechox%" {0E}  1) Коррекция цвета выделения в теме Solarized Light (предложение DV){#}{\n}
+"%cechox%" {0E}  2) Цветовая тема One Dark Pro (предложение Rinat){#}{\n}{\n}
+"%cechox%"   Чтобы не делать, вводим {E0}0{#} и жмём Enter,{\n}
+"%cechox%"   чтобы делать,    вводим {E0}1{#} и жмём Enter{\n}
+"%cechox%"                    или просто жмём {E0}Enter{#}:
 call cocolor A0
 set /p buns=
 call cocolor 07
