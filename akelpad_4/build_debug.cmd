@@ -7,7 +7,7 @@
 >nul chcp 866
 title BUILD AKELPAD DEBUG: DECLARE VARIABLES
 
-call reqcheck.cmd
+call reqcheck.cmd %~1
 
 call cmdmax 0 0 160 80 160 80
 
