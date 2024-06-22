@@ -1,5 +1,5 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-@rem :: Script.......: debug_build.cmd                                        ::
+@rem :: Script.......: build_debug.cmd                                        ::
 @rem :: Location.....: .\                                                     ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -7,16 +7,7 @@
 >nul chcp 866
 title BUILD AKELPAD DEBUG: DECLARE VARIABLES
 
-rem ::  ç «® ¯à®¢¥àª¨ âà¥¡®¢ ­¨©
-if exist .\tools\nul PATH %~dp0tools;%PATH%
-where cmdmax 2>NUL 1>NUL
-if errorlevel 1 goto :requirements
-where hscolor 2>NUL 1>NUL
-if errorlevel 1 goto :requirements
-if not defined cechox set cechox=%~dp0tools\cecho.exe
-if not exist %cechox% goto :requirements
-if not defined AKELPAD goto :requirements
-rem :: Š®­¥æ ¯à®¢¥àª¨ âà¥¡®¢ ­¨©
+call reqcheck.cmd
 
 call cmdmax 0 0 160 80 160 80
 
@@ -154,9 +145,3 @@ echo. ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
 echo. ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
 >nul timeout /t 15
 exit
-
-:requirements
-echo.
-echo.¥ ­ ©¤¥­ë ­¥®¡å®¤¨¬ë¥ ãâ¨«¨âë
-echo.‚ë¯®«­¥­¨¥ áæ¥­ à¨ï ¯à¥à¢ ­®
-pause>nul
