@@ -4,8 +4,8 @@
 
 **Совместимость**:  
 
-- $`\geq`$ [CodeSVN revision 4443](https://sourceforge.net/p/akelpad/codesvn/4443/)  
-- набор для компиляции версий $`\leq`$ r4443 см. в [`_arc_`](./_arc_)  
+- $`\geq`$ [CodeSVN revision 4447](https://sourceforge.net/p/akelpad/codesvn/4447/)  
+- наборы для компиляции версий $`\leq`$ r4445 см. в [`_arc_`](./_arc_)  
 
 **Требования**:  
 

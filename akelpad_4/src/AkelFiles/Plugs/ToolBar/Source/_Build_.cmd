@@ -1,5 +1,5 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-@rem :: Script.......: _Build-ToolBarExtra64_.cmd                             ::
+@rem :: Script.......: _Build_.cmd                                            ::
 @rem :: Location.....: .\src\AkelFiles\Plugs\ToolBar\Source\                  ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -11,7 +11,7 @@
 @ECHO OFF
 set VCDIR=c:\Program Files\Microsoft Visual C++ Toolkit 2003
 set MSSDK=c:\Program Files\Microsoft Platform SDK
-set BIT=64
+set BIT=32
 set DEBUG=0
 set CLFLAGS=/Wall /WX /wd4100 /wd4201 /wd4204 /wd4255 /wd4310 /wd4619 /wd4668 /wd4701 /wd4706 /wd4711 /wd4820 /wd4826
 set LINKFLAGS=
