@@ -1,7 +1,7 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @rem :: Script.......: Автоматизация компиляции AkelPad из исходников         ::
 @rem :: Location.....: .\                                                     ::
-@rem :: Version......: 5.2.0                                                  ::
+@rem :: Version......: 5.2.1                                                  ::
 @rem :: Compatible...: >= r4447                                               ::
 @rem :: C.Date/M.Date: 17.08.2022 / 25.06.2024                                ::
 @rem :: Requirements.: cecho.exe   2.0 by Thomas Polaert  on codeproject.com  ::
@@ -13,6 +13,28 @@
 title BUILD AKELPAD: DECLARE VARIABLES
 
 call reqcheck.cmd %~1
+
+set root=%~dp0
+set src=%root%src\
+set extras=%root%extras\
+
+if not exist %src%. (
+  echo.
+  "%cechox%" {0C}  Должна быть папка{#} {C0}src{#} {0C}и в ней файлы исходников{#}{\n}
+  "%cechox%" {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
+  "%cechox%" {0C}  Прекращаем выполнение сценария{#}{\n}
+  pause>NUL
+  exit
+)
+
+if not exist %extras%. (
+  echo.
+  "%cechox%" {0C}  Должна быть папка{#} {C0}extras{#} {0C}и в ней дополнительные плагины{#}{\n}
+  "%cechox%" {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
+  "%cechox%" {0C}  Прекращаем выполнение сценария{#}{\n}
+  pause>NUL
+  exit
+)
 
 call cmdmax 0 0 160 80 160 80
 
@@ -106,33 +128,11 @@ if not "%buns%"=="0" (
   )
 )
 
-
-set root=%~dp0
-set src=%root%src\
 set target=%root%build\%rev%\
-set extras=%root%extras\
 set debug=0
 set debugstr1=
 set debugstr2=
 set param=
-
-if not exist %src%. (
-  echo.
-  "%cechox%" {0C}  Должна быть папка{#} {C0}src{#} {0C}и в ней файлы исходников{#}{\n}
-  "%cechox%" {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
-  "%cechox%" {0C}  Прекращаем выполнение сценария{#}{\n}
-  pause>NUL
-  exit
-)
-
-if not exist %extras%. (
-  echo.
-  "%cechox%" {0C}  Должна быть папка{#} {C0}extras{#} {0C}и в ней дополнительные плагины{#}{\n}
-  "%cechox%" {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
-  "%cechox%" {0C}  Прекращаем выполнение сценария{#}{\n}
-  pause>NUL
-  exit
-)
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

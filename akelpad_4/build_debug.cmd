@@ -9,6 +9,18 @@ title BUILD AKELPAD DEBUG: DECLARE VARIABLES
 
 call reqcheck.cmd %~1
 
+set root=%~dp0
+set src=%root%src\
+
+if not exist %src%. (
+  echo.
+  "%cechox%" {0C}  Должна быть папка{#} {C0}src{#} {0C}и в ней файлы исходников{#}{\n}
+  "%cechox%" {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
+  "%cechox%" {0C}  Прекращаем выполнение сценария{#}{\n}
+  pause>NUL
+  exit
+)
+
 call cmdmax 0 0 160 80 160 80
 
 cls
@@ -62,9 +74,8 @@ set /p err=
 if "%err%"=="0" goto :eof
 if not "%err%"=="" goto :eof
 
-set root=%~dp0
-set src=%root%src\
 set target=%root%build\%rev%d\
+set pdb=%target%pdb
 set debugcmd=0
 set toolbarx=0
 set cont=1
@@ -73,16 +84,6 @@ set debug=1
 set debugstr1= DEBUG
 set debugstr2=DEBUG version. 
 set param=/D
-set pdb=%target%pdb
-
-if not exist %src%. (
-  echo.
-  "%cechox%" {0C}  Должна быть папка{#} {C0}src{#} {0C}и в ней файлы исходников{#}{\n}
-  "%cechox%" {0C}  Сейчас этой папки нет или скрипт её не видит{#}{\n}
-  "%cechox%" {0C}  Прекращаем выполнение сценария{#}{\n}
-  pause>NUL
-  exit
-)
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
