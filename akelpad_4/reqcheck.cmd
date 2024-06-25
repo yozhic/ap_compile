@@ -10,10 +10,6 @@ for %%x in (cmdmax.exe,cmdmax.cmd) do (set FOUND=%%~$PATH:x & if exist "!FOUND!"
 call :requirements cmdmax
 
 :next1
-for %%x in (cocolor.exe,cocolor.cmd) do (set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :next2)
-call :requirements cocolor
-
-:next2
 if not defined cechox (
   set cechox=%~dp0tools\cecho.exe
   if not exist "%cechox%" call :requirements cecho
