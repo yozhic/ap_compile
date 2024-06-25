@@ -1,7 +1,7 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @rem :: Script.......: €¢â®¬ â¨§ æ¨ï ª®¬¯¨«ïæ¨¨ AkelPad ¨§ ¨áå®¤­¨ª®¢         ::
 @rem :: Location.....: .\                                                     ::
-@rem :: Version......: 5.2.1                                                  ::
+@rem :: Version......: 5.2.2                                                  ::
 @rem :: Compatible...: >= r4447                                               ::
 @rem :: C.Date/M.Date: 17.08.2022 / 25.06.2024                                ::
 @rem :: Requirements.: cecho.exe   2.0 by Thomas Polaert  on codeproject.com  ::
@@ -18,7 +18,7 @@ set root=%~dp0
 set src=%root%src\
 set extras=%root%extras\
 
-if not exist %src%. (
+if not exist "%src%." (
   echo.
   "%cechox%" {0C}  „®«¦­  ¡ëâì ¯ ¯ª {#} {C0}src{#} {0C}¨ ¢ ­¥© ä ©«ë ¨áå®¤­¨ª®¢{#}{\n}
   "%cechox%" {0C}  ‘¥©ç á íâ®© ¯ ¯ª¨ ­¥â ¨«¨ áªà¨¯â ¥ñ ­¥ ¢¨¤¨â{#}{\n}
@@ -26,15 +26,7 @@ if not exist %src%. (
   pause>NUL
   exit
 )
-
-if not exist %extras%. (
-  echo.
-  "%cechox%" {0C}  „®«¦­  ¡ëâì ¯ ¯ª {#} {C0}extras{#} {0C}¨ ¢ ­¥© ¤®¯®«­¨â¥«ì­ë¥ ¯« £¨­ë{#}{\n}
-  "%cechox%" {0C}  ‘¥©ç á íâ®© ¯ ¯ª¨ ­¥â ¨«¨ áªà¨¯â ¥ñ ­¥ ¢¨¤¨â{#}{\n}
-  "%cechox%" {0C}  à¥ªà é ¥¬ ¢ë¯®«­¥­¨¥ áæ¥­ à¨ï{#}{\n}
-  pause>NUL
-  exit
-)
+if not exist "%extras%." set extras=0
 
 call cmdmax 0 0 160 80 160 80
 
@@ -51,6 +43,19 @@ echo. ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
 echo. ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
 echo.
 "%cechox%" {07}
+
+if "%extras%"=="0" (
+  setlocal enabledelayedexpansion
+  echo.
+  "%cechox%" {0C}  Ž’‘“’‘’‚“…’ €Š€ ‘’ŽŽˆ• ‹€ƒˆŽ‚{#}{\n}
+  "%cechox%"   —â®¡ë ¯à¥à¢ âì áªà¨¯â, ¢¢®¤¨¬ {E0}1{#} ¨ ¦¬ñ¬ Enter,{\n}
+  "%cechox%"   çâ®¡ë ¯à®¤®«¦¨âì ¡¥§ ­¨å,  ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
+  "%cechox%" {C0}
+  set /p break=
+  "%cechox%" {07}
+  if "!break!"=="1" goto :EOF
+  endlocal
+)
 
 echo.
 "%cechox%" {0E}  Ž’‹€„Š€ ‘Šˆ’€ ŠŽŒˆ‹Ÿ–ˆˆ{#}{\n}
@@ -134,6 +139,7 @@ set debugstr1=
 set debugstr2=
 set param=
 
+
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD: MAKE DIRECTORIES TREE
@@ -192,11 +198,13 @@ start /wait make_dlls64.cmd
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-title BUILD AKELPAD: COLLECT EXTRAS
-echo.& echo.  Start collecting Extras...
-start /wait make_extras.cmd
-"%cechox%" {0A}  EXTRAS COLLECTING IS COMPLETE{#}{\n}
->nul timeout /t 1
+if not "%extras%"=="0" (
+  title BUILD AKELPAD: COLLECT EXTRAS
+  echo.& echo.  Start collecting Extras...
+  start /wait make_extras.cmd
+  "%cechox%" {0A}  EXTRAS COLLECTING IS COMPLETE{#}{\n}
+  >nul timeout /t 1
+)
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

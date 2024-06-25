@@ -7,8 +7,12 @@
 cd %target%
 
 echo.Неофициальная компиляция>README.TXT
-echo.AkelPad 4.9.9 %rev% [%data%]>>README.TXT
-echo.с плагинами (по списку на akelpad.sf.net) и AkelUpdater>>README.TXT
+if "%extras%"=="0" (
+  echo.AkelPad 4.9.9 %rev% [%data%] с плагинами>>README.TXT
+) else (
+  echo.AkelPad 4.9.9 %rev% [%data%]>>README.TXT
+  echo.с плагинами ^(по списку на akelpad.sf.net^) и AkelUpdater>>README.TXT
+)
 echo.>>README.TXT
 echo.3 набора:>>README.TXT
 echo.32-bit; 64-bit; комбинированный>>README.TXT
