@@ -124,14 +124,15 @@ popd
 cls
 pushd AkelFiles\Plugs\ToolBar\Source\
 if %debugcmd%==0 (call Build.cmd /S /X32 %param%) else (call Build.cmd /N /X32 %param%)
+
 cls
+cd "%root%"
 if %toolbarx%==1 (
-  if %debugcmd%==0 (call _Build_.cmd /S /X32) else (call _Build_.cmd /N /X32)
+  if %debugcmd%==0 (call make_toolbarx.cmd /S /X32) else (call make_toolbarx.cmd /N /X32)
+  cd "%root%"
 )
 
 cls
-cd %root%
-
 for /r %src% %%f in (*.dll) do move /y "%%f" %root%
 if "%debug%"=="1" for /r %src% %%f in (*.pdb) do move /y "%%f" %root%
 

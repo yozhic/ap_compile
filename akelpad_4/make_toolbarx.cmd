@@ -3,6 +3,8 @@
 @rem :: Location.....: .\src\AkelFiles\Plugs\ToolBar\Source\                  ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+@cd "%src%AkelFiles\Plugs\ToolBar\Source\"
+
 ::Build.cmd /S /X32 /D
 :: /S   silent mode
 :: /X32 32-bit or /X64 64-bit
