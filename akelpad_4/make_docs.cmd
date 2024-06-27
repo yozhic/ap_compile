@@ -42,5 +42,6 @@ if "%debug%"=="0" (
 ) else (
   %cechox% {0B}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
 )
->nul timeout /t 2
+
+if %debugcmd%==0 (>nul timeout /t 2) else ("%cechox%" {08} & pause & "%cechox%" {#})
 exit

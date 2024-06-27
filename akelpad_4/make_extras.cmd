@@ -34,5 +34,7 @@ copy /y /v Plugs64\*.dll "%target%x86_64\AkelPad\AkelFiles\Plugs64\"
 
 echo.& echo.
 %cechox% {0A}EXTRAS COLLECTED{#}{\n}
->nul timeout /t 2
+
+if %debugcmd%==0 (>nul timeout /t 2) else ("%cechox%" {08} & pause & "%cechox%" {#})
+
 exit

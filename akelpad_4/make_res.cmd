@@ -134,5 +134,7 @@ rem :: Источник: предложение Rinat https://akelpad.sourceforge.net/forum/viewtop
 
 
 :skip4
->nul timeout /t 3
+
+if %debugcmd%==0 (>nul timeout /t 3) else ("%cechox%" {08} & pause & "%cechox%" {#})
+
 exit

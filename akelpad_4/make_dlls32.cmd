@@ -206,5 +206,7 @@ if "%debug%"=="0" (
 ) else (
   %cechox% {0B}X86 DLLS COMPILED{#}{\n}
 )
->nul timeout /t 2
+
+if %debugcmd%==0 (>nul timeout /t 2) else ("%cechox%" {08} & pause & "%cechox%" {#})
+
 exit
