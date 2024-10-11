@@ -68,15 +68,23 @@ echo Edit .\src\AkelEdit\Resources\Version.rc
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 
+echo Edit .\src\AkelFiles\Langs\Resources\version.h
+"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Langs\Resources\version.h") ^
+          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'text editor','text editor. R%rev:~1% Dev Preview.',0x200001,0x1);`) ^
+          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
+          /Quit
+echo.
+
 for /r "%~dp0src\AkelFiles\Plugs" %%f in (Version.rc) do if exist %%f echo Edit %%f & "%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "%debugstr2%CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
 
 if "%debug%"=="1" goto :skip2
 
-echo Edit .\src\AkelFiles\Langs\Resources\Version.rc
+echo.& echo Edit .\src\AkelFiles\Langs\Resources\Version.rc
 "%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Langs\Resources\Version.rc") ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'(?m)^^(\\x20+)VALUE "FileDescription"','\\1VALUE "Comments", "CodeSVN revision %rev:~1% [%data%]\\\\0"\\n\\0',0x280001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
+echo.
 
 for /r "%~dp0src\AkelFiles\Langs\Resources" %%f in (*.rc) do if exist %%f echo Edit %%f & "%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%%f") /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'2006-2017','2006-2024',0x200001,0x1); AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) /Quit
 
