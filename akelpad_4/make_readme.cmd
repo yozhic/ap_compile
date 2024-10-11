@@ -6,6 +6,8 @@
 >nul chcp 1251
 cd %target%
 
+for /f "delims=" %%A in ('ver') do set V=%%A
+
 echo.Неофициальная компиляция>README.TXT
 if "%extras%"=="0" (
   echo.AkelPad 4.9.9 %rev% [%data%] с плагинами>>README.TXT
@@ -21,10 +23,12 @@ echo.Последние изменения:>>README.TXT
 echo.https://sourceforge.net/p/akelpad/codesvn/%rev:~1%/log/?path=>>README.TXT
 echo.>>README.TXT
 echo.Особенности компиляции:>>README.TXT
-echo.1) Скомпилировано при помощи:>>README.TXT
+echo.1) Скомпилировано на %V%>>README.TXT
+echo.2) Скомпилировано при помощи:>>README.TXT
 echo.   Microsoft Visual C++ Toolkit 2003>>README.TXT
 echo.   Windows Server 2003 R2 Platform SDK>>README.TXT
-echo.2) В окно About добавлена информация о CodeSVN revision.>>README.TXT
-echo.3) В свойства dll добавлен комментарий с информацией о CodeSVN revision.>>README.TXT
+echo.   AkelUpdater при помощи NSIS 2.51>>README.TXT
+echo.3) В окно About добавлена информация о CodeSVN revision.>>README.TXT
+echo.4) В свойства dll добавлен комментарий с информацией о CodeSVN revision.>>README.TXT
 echo.>>README.TXT
 exit
