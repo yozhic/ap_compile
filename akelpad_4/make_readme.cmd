@@ -10,9 +10,9 @@ for /f "delims=" %%A in ('ver') do set V=%%A
 
 echo.Неофициальная компиляция>README.TXT
 if "%extras%"=="0" (
-  echo.AkelPad 4.9.9 %rev% [%data%] с плагинами>>README.TXT
+  echo.AkelPad 4.10.0 %rev% [%data%] с плагинами>>README.TXT
 ) else (
-  echo.AkelPad 4.9.9 %rev% [%data%]>>README.TXT
+  echo.AkelPad 4.10.0 %rev% [%data%]>>README.TXT
   echo.с плагинами ^(по списку на akelpad.sf.net^) и AkelUpdater>>README.TXT
 )
 echo.>>README.TXT

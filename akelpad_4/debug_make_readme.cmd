@@ -9,7 +9,7 @@ cd %target%
 for /f "delims=" %%A in ('ver') do set V=%%A
 
 echo.Неофициальная компиляция>README.TXT
-echo.AkelPad 4.9.9 %rev% [%data%] с плагинами>>README.TXT
+echo.AkelPad 4.10.0 %rev% [%data%] с плагинами>>README.TXT
 echo.Версия отладочная (DEBUG)>>README.TXT
 echo.>>README.TXT
 echo.2 набора:>>README.TXT

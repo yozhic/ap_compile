@@ -45,8 +45,8 @@ if "%cont%"=="0" (
 title BUILD AKELPAD%debugstr1%: EDIT ABOUT INFO
 echo.& echo Edit About window Info...
 "%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\Edit.h") ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'AkelPad 4.9.9 (x64)','AkelPad 4.9.9 (x64) [%rev%]%debugstr1%',0x200001,0x1);`) ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'AkelPad 4.9.9 (x86)','AkelPad 4.9.9 (x86) [%rev%]%debugstr1%',0x200001,0x1);`) ^
+          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'AkelPad 4.10.0 (x64)','AkelPad 4.10.0 (x64) [%rev%]%debugstr1%',0x200001,0x1);`) ^
+          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'AkelPad 4.10.0 (x86)','AkelPad 4.10.0 (x86) [%rev%]%debugstr1%',0x200001,0x1);`) ^
           /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
           /Quit
 if "%debug%"=="0" (
