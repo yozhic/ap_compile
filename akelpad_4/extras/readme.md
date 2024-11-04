@@ -1,1 +1,5 @@
-_Здесь размещаем_ `AkelUpdater.exe`  
+_Здесь размещаем_  
+
+```
+ └─ AkelUpdater.exe
+```
