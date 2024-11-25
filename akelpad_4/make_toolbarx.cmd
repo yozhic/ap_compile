@@ -1,6 +1,7 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @rem :: Script.......: _Build_.cmd                                            ::
 @rem :: Location.....: .\src\AkelFiles\Plugs\ToolBar\Source\                  ::
+@rem :: Encoding.....: ANSI                                                   ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 @cd "%src%AkelFiles\Plugs\ToolBar\Source\"

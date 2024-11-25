@@ -1,6 +1,7 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 @rem :: Script.......: make_res.cmd                                           ::
 @rem :: Location.....: .\                                                     ::
+@rem :: Encoding.....: 866 OEM Russian                                        ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 @echo off
@@ -101,16 +102,6 @@ if "%buns%"=="0" (
   echo.& %cechox% {06} Extra additions is canceled{#}{\n}
   goto :skip4
 )
-
-title BUILD AKELPAD: CORRECT SOLARIZED LIGHT THEME
-echo.& echo Correct selection colors in Solarized Light Theme...
-rem :: Источник: предложение DV https://akelpad.sourceforge.net/forum/viewtopic.php?p=31774#p31774
-"%AKELPAD%" /NewInstance /MainClass("BuildAkelPad4") /Show(0) /OpenFile("%~dp0src\AkelFiles\Plugs\Coder\Source\Coder.h") ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'HighLight_SelTextColor #586E75\\r\\','HighLight_SelTextColor #FDF6E3\\r\\',0x200001,0x1);`) ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.TextReplace(0,'HighLight_SelBkColor #FFFFFF\\r\\','HighLight_SelBkColor #586E75\\r\\',0x200001,0x1);`) ^
-          /Call('Scripts::Main',4,'EvalCmd.js',`AkelPad.Command(4105); AkelPad.Command(4324); AkelPad.SendMessage(AkelPad.GetMainWnd(),1238,8,0);`) ^
-          /Quit
-%cechox% {0A}SOLARIZED LIGHT THEME CORRECTION IS COMPLETE{#}{\n}
 
 title BUILD AKELPAD: ADD ONEDARKPRO THEME
 echo.& echo Add One Dark Pro Theme...
