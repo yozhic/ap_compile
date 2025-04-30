@@ -40,7 +40,8 @@ if exist "%plugs%\SpecialChar\Source\Resources\Version.rc.bak"    (copy /v /y "%
 if exist "%plugs%\Stats\Source\Resources\Version.rc.bak"          (copy /v /y "%plugs%\Stats\Source\Resources\Version.rc.bak"          "%plugs%\Stats\Source\Resources\Version.rc")          else (copy /v /y "%plugs%\Stats\Source\Resources\Version.rc" "%plugs%\Stats\Source\Resources\Version.rc.bak")
 if exist "%plugs%\ToolBar\Source\Resources\Version.rc.bak"        (copy /v /y "%plugs%\ToolBar\Source\Resources\Version.rc.bak"        "%plugs%\ToolBar\Source\Resources\Version.rc")        else (copy /v /y "%plugs%\ToolBar\Source\Resources\Version.rc" "%plugs%\ToolBar\Source\Resources\Version.rc.bak")
 echo.
-if exist "%src%AkelFiles\Langs\Resources\Version.rc.bak" (copy /v /y "%src%AkelFiles\Langs\Resources\Version.rc.bak" "%src%AkelFiles\Langs\Resources\Version.rc") else (copy /v /y "%src%AkelFiles\Langs\Resources\Version.rc" "%src%AkelFiles\Langs\Resources\Version.rc.bak")
+if exist "%langs%\Version.rc.bak" (copy /v /y "%langs%\Version.rc.bak" "%langs%\Version.rc") else (copy /v /y "%langs%\Version.rc" "%langs%\Version.rc.bak")
+if exist "%langs%\version.h.bak"  (copy /v /y "%langs%\version.h.bak" "%langs%\version.h")   else (copy /v /y "%langs%\version.h" "%langs%\version.h.bak")
 echo.
 if exist "%langs%\Belorussian.rc.bak"           (copy /v /y "%langs%\Belorussian.rc.bak"           "%langs%\Belorussian.rc")           else (copy /v /y "%langs%\Belorussian.rc"           "%langs%\Belorussian.rc.bak")
 if exist "%langs%\Brazilian.rc.bak"             (copy /v /y "%langs%\Brazilian.rc.bak"             "%langs%\Brazilian.rc")             else (copy /v /y "%langs%\Brazilian.rc"             "%langs%\Brazilian.rc.bak")
