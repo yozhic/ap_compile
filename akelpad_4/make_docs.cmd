@@ -39,10 +39,10 @@ copy /y /v .\AkelFiles\Plugs\Scripts\Plugs\Scripts\Include\*.* "%target%x86_64\A
 
 echo.& echo.
 if "%debug%"=="0" (
-  %cechox% {0A}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
+  cecho {0A}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
 ) else (
-  %cechox% {0B}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
+  cecho {0B}DOCS {\u0026} INT-EXTRAS COLLECTED{#}{\n}
 )
 
-if %debugcmd%==0 (>nul timeout /t 2) else ("%cechox%" {08} & pause & "%cechox%" {#})
+if %debugcmd%==0 (>nul timeout /t 2) else (cecho {08} & pause & cecho {#})
 exit

@@ -15,66 +15,89 @@ set src=%root%src\
 
 if not exist %src%. (
   echo.
-  "%cechox%" {0C}  „®«¦­  ¡ëâì ¯ ¯ª {#} {C0}src{#} {0C}¨ ¢ ­¥© ä ©«ë ¨áå®¤­¨ª®¢{#}{\n}
-  "%cechox%" {0C}  ‘¥©ç á íâ®© ¯ ¯ª¨ ­¥â ¨«¨ áªà¨¯â ¥ñ ­¥ ¢¨¤¨â{#}{\n}
-  "%cechox%" {0C}  à¥ªà é ¥¬ ¢ë¯®«­¥­¨¥ áæ¥­ à¨ï{#}{\n}
+  cecho {0C}  „®«¦­  ¡ëâì ¯ ¯ª {#} {C0}src{#} {0C}¨ ¢ ­¥© ä ©«ë ¨áå®¤­¨ª®¢{#}{\n}
+  cecho {0C}  ‘¥©ç á íâ®© ¯ ¯ª¨ ­¥â ¨«¨ áªà¨¯â ¥ñ ­¥ ¢¨¤¨â{#}{\n}
+  cecho {0C}  à¥ªà é ¥¬ ¢ë¯®«­¥­¨¥ áæ¥­ à¨ï{#}{\n}
   pause>NUL
   exit
 )
 
-call cmdmax 0 0 160 80 160 80
+cmdmax 0 0 160 80 160 80
 
 cls
-"%cechox%" {0B}
+cecho {0B}
 echo.
 echo.   ßÛÞßÛÛÛ ßÛÞ ÛÛÛ ßÛÞßÛÛÛ ßÛÞß    ßÛÞßÛÛÛ ßÛÞßÛÛÛ ßÛÞßÛÛÛ        o       o                
 echo.    ÛÞÜÛÛÛ  ÛÞÜÛÛß  ÛÞÜ     ÛÞ      ÛÞ ÛÛÛ  ÛÞÜÛÛÛ  ÛÞ ÛÛÛ         \_____/                 
 echo.    ÛÞ ÛÛÛ  ÛÞ ÛÛÛ  ÛÞ ÜÛÛ  ÛÞ ÛÛÛ  ÛÞßßßß  ÛÞ ÛÛÛ  ÛÞ ÛÛÛ         /=O=O=\     _______     
 echo.   ßßß ßßß ßßß ßßß ßßßßßßß ßßßßßßß ßßßß    ßßß ßßß ßßßßßßß        /   ^^   \   /\\\\\\\\    
-echo.   ßÛÞßÛÛÛ ßÛÞßÛÛÛ ßÛÞßÛÛÛ ßÛÞ ÛÛÛ ßÛÞßÛÛÛ                        \ \___/ /  /\   ___  \   
+echo.   ßÛÞßÛÛÛ ßÛÞßÛÛÛ ßÛÞßÛÛÛ ßÛÞ ÛÛÛ ßÛÞßÛÛÛ                        \  ÄÄÄ  /  /\   ___  \   
 echo.    ÛÞ ÛÛÛ  ÛÞÜ     ÛÞÜÛÛß  ÛÞ ÛÛÛ  ÛÞ                             \_ V _/  /\   /\\\\  \  
 echo.    ÛÞ ÛÛÛ  ÛÞ ÜÛÛ  ÛÞ ÛÛÛ  ÛÞ ÛÛÛ  ÛÞ ßÛÛ                           \  \__/\   /\ @_/  /  
 echo.   ßßßßßßß ßßßßßßß ßßßßßßß ßßßßßßß ßßßßßßß                            \____\____\______/   
 echo. ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
 echo. ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
 echo.
-"%cechox%" {07}
+cecho {07}
 
-if not "%1"=="" set rev=%1
-if not "%2"=="" set data=%2
-
-if "%rev%"=="" (
-  echo.& "%cechox%" {0E}  ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}r4416{#}:
-  "%cechox%" {0B}
-  set /p rev=
-  "%cechox%" {07}
+if not "%1"=="" (
+  set rev=%1
+  if not "%2"=="" (
+    set data=%2
+    goto :check
+  )
 )
 
-if "%data%"=="" (
-  echo.& "%cechox%" {0E}  ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}%DATE%{#}:
-  "%cechox%" {0B}
-  set /p data=
-  "%cechox%" {07}
+if not defined rev (
+  if not exist .\.rev (
+    setlocal enabledelayedexpansion
+    echo.& cecho {0E}  ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}r4416{#}:
+    cecho {0B}
+    set /p rev=
+    cecho {07}
+    echo !rev!>.rev
+    endlocal
+  )
+  set /p rev=<.rev
 )
 
-:skip
-"%cechox%" {0B}
+if not defined data (
+  if not exist .\.data (
+    (
+      setlocal enabledelayedexpansion
+      echo.& cecho {0E}  ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}%DATE%{#}:
+      cecho {0B}
+      set /p data=
+      cecho {07}
+      echo !data!>.data
+      endlocal
+    )
+    set /p data=<.data
+    goto :job
+  )
+  set /p data=<.data
+  goto :check
+)
+
+:check
+cecho {0B}
 echo.
 echo.  ŽŒ… …„€Š–ˆˆ: %rev%
 echo.  „€’€  …„€Š–ˆˆ: %data%
-"%cechox%" {07}
+cecho {07}
 
 echo.
-"%cechox%" {0E}  ‚áñ ¯à ¢¨«ì­®? à®¤®«¦ ¥¬?{#}{\n}
-"%cechox%"   …á«¨ ­¥ ¯à ¢¨«ì­®, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
-"%cechox%"   ¥á«¨    ¯à ¢¨«ì­®, ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
-"%cechox%" {B0}
+cecho {0E}  ‚áñ ¯à ¢¨«ì­®? à®¤®«¦ ¥¬?{#}{\n}
+cecho   …á«¨ ­¥ ¯à ¢¨«ì­®, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
+cecho   ¥á«¨    ¯à ¢¨«ì­®, ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
+cecho {B0}
 set /p err=
-"%cechox%" {07}
+cecho {07}
 
 if "%err%"=="0" goto :eof
 if not "%err%"=="" goto :eof
 
+:job
 set target=%root%build\%rev%d\
 set pdb=%target%pdb
 set debugcmd=0
@@ -89,60 +112,69 @@ set param=/D
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD DEBUG: MAKE DIRECTORIES TREE
-echo.& echo.  Start creating Directories Tree...
+echo.&echo.
+cecho {08}  ‘®§¤ ñ¬ ¯ ¯ª¨...{#}
 start /min /wait debug_make_dirs.cmd
-"%cechox%" {0B}  DIRECTORIES TREE CREATION IS COMPLETE{#}{\n}
+cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD DEBUG: REFRESH BACKUPS
-echo.& echo.  Start refreshing Backups...
+cecho {08}  ®¤£®â ¢«¨¢ ¥¬ à¥áãàáë...{#}
 start /wait make_res_bkp.cmd
-"%cechox%" {0B}  BACKUPS REFRESHING IS COMPLETE{#}{\n}
+cecho {0B}{\t\t}ƒ®â®¢®.{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD DEBUG: MAKE RESOURCES
-echo.& echo.  Start creating Resources...
+cecho {08}  ¥¤ ªâ¨àã¥¬ à¥áãàáë...{#}
 start /wait make_res.cmd
-"%cechox%" {0B}  RESOURCES CREATION IS COMPLETE{#}{\n}
+cecho {0B}{\t\t}ƒ®â®¢®.{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD DEBUG: MAKE x86-x64 EXE
-echo.& echo.  Start compiling Executables...
+cecho {08}  ‘®§¤ ñ¬ ¯à®£à ¬¬ë...{#}
 start /wait make_exe.cmd
-"%cechox%" {0B}  EXECUTABLES COMPILATION IS COMPLETE{#}{\n}
+cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD DEBUG: MAKE x86 DLLS
-echo.& echo.  Start compiling x86 DLLS...
+cecho {08}  ‘®§¤ ñ¬ 32-¡¨â­ë¥ ¡¨¡«¨®â¥ª¨...{#}
 start /wait make_dlls32.cmd
-"%cechox%" {0B}  x86 DLLS COMPILATION IS COMPLETE{#}{\n}
+cecho {0B}{\t}ƒ®â®¢®.{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD DEBUG: MAKE x64 DLLS
-echo.& echo.  Start compiling x64 DLLS...
+cecho {08}  ‘®§¤ ñ¬ 64-¡¨â­ë¥ ¡¨¡«¨®â¥ª¨...{#}
 start /wait make_dlls64.cmd
-"%cechox%" {0B}  x64 DLLS COMPILATION IS COMPLETE{#}{\n}
+cecho {0B}{\t}ƒ®â®¢®.{#}{\n}
 >nul timeout /t 1
 
 rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 title BUILD AKELPAD DEBUG: CREATE README.TXT
-echo.& echo.  Start creating ReadMe.txt...
+cecho {08}  ‘®§¤ ñ¬ ReadMe.txt...{#}
 start /min /wait debug_make_readme.cmd
-"%cechox%" {0B}  README.TXT IS CREATED{#}{\n}
-"%cechox%" {0B}  BUILDING HAVE DONE{#}{\n}
+cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
+
+for %%x in (rar.exe) do (set FOUND=%%~$PATH:x)
+if defined FOUND (
+  cecho {08}  ‘®§¤ ñ¬ rar...{#}
+  cd build
+  rar a -m5 -rr -inul %rev%d.rar %rev%d
+  cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
+)
+cecho {0B}{\n}  ‘ŽŠ€ ‡€‚…˜…€{#}{\n}
 echo.
-"%cechox%" {0B}
+cecho {0B}
 echo. ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
 echo. ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
 >nul timeout /t 15

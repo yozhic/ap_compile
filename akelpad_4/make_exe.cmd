@@ -51,11 +51,11 @@ if "%debug%"=="0" (
 
 echo.& echo.
 if "%debug%"=="0" (
-  %cechox% {0A}EXECUTABLES COMPILED{#}{\n}
+  cecho {0A}EXECUTABLES COMPILED{#}{\n}
 ) else (
-  %cechox% {0B}EXECUTABLES COMPILED{#}{\n}
+  cecho {0B}EXECUTABLES COMPILED{#}{\n}
 )
 
-if %debugcmd%==0 (>nul timeout /t 2) else ("%cechox%" {08} & pause & "%cechox%" {#})
+if %debugcmd%==0 (>nul timeout /t 2) else (cecho {08} & pause & cecho {#})
 
 exit

@@ -4,17 +4,23 @@
 @rem :: Encoding.....: 866 OEM Russian                                        ::
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+@echo off
+
 if exist .\tools\nul PATH %~dp0tools;%PATH%
 
 setlocal enabledelayedexpansion
-for %%x in (cmdmax.exe,cmdmax.cmd) do (set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :next1)
-call :requirements cmdmax
-
-:next1
-if not defined cechox (
-  set cechox=%~dp0tools\cecho.exe
-  if not exist "%cechox%" call :requirements cecho
+for %%x in (cmdmax.exe) do (
+  set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :step1
+  call :requirements %%x
 )
+
+:step1
+for %%x in (cecho.exe) do (
+  set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :step2
+  call :requirements %%x
+)
+
+:step2
 if not defined AKELPAD (
   if "%*"=="" (
     set AKELPAD=%~dp0tools\AkelPad.exe

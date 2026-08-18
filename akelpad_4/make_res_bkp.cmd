@@ -72,11 +72,11 @@ if exist "%plugs%\Coder\Source\Coder.c.bak" (copy /v /y "%plugs%\Coder\Source\Co
 
 echo.& echo.
 if "%debug%"=="0" (
-  %cechox% {0A}BACKUPS REFRESHED{#}{\n}
+  cecho {0A}BACKUPS REFRESHED{#}{\n}
 ) else (
-  %cechox% {0B}BACKUPS REFRESHED{#}{\n}
+  cecho {0B}BACKUPS REFRESHED{#}{\n}
 )
 
-if %debugcmd%==0 (>nul timeout /t 2) else ("%cechox%" {08} & pause & "%cechox%" {#})
+if %debugcmd%==0 (>nul timeout /t 2) else (cecho {08} & pause & cecho {#})
 
 exit
