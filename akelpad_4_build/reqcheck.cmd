@@ -5,39 +5,38 @@
 @rem :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 @echo off
+title BUILD AKELPAD: REQUIREMENTS CHECKING
 
 if exist .\tools\nul PATH %~dp0tools;%PATH%
 
-setlocal enabledelayedexpansion
-for %%x in (cmdmax.exe) do (
-  set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :step1
-  call :requirements %%x
-)
-
-:step1
 for %%x in (cecho.exe) do (
-  set FOUND=%%~$PATH:x & if exist "!FOUND!" goto :step2
-  call :requirements %%x
+  set FOUND=%%~$PATH:x
+  if not exist "!FOUND!" call :requirements %%x
 )
 
-:step2
-if not defined AKELPAD (
-  if "%*"=="" (
-    set AKELPAD=%~dp0tools\AkelPad.exe
-  ) else (
-    set AKELPAD=%*
-  )
-  if not exist "!AKELPAD!" call :requirements !AKELPAD!
+for %%x in (jrepl.bat) do (
+  set FOUND=%%~$PATH:x
+  if not exist "!FOUND!" call :requirements %%x
 )
+
 if not exist "c:\Program Files\Microsoft Platform SDK\Bin\win64\cl.exe" call :requirements Microsoft Platform SDK
 if not exist "c:\Program Files\Microsoft Visual C++ Toolkit 2003\bin\cl.exe" call :requirements Microsoft Visual C++ Toolkit 2003
 
-endlocal
+if not exist "%src%." (
+  echo.
+  cecho {0C}   \__/    {#}Должна быть папка {C0}src{#} и в ней файлы исходников{\n}
+  cecho {0C}   ^(oo^)    {#}Сейчас этой папки нет или скрипт её не видит{\n}
+  cecho {0C}  //^|^|\\   {#}Отменяем запуск сценария{\n}
+  >nul timeout /t 20
+  exit
+)
+
 goto :EOF
 
 :requirements
-echo.
-echo. Не найдены необходимые утилиты: %*
-echo. Выполнение сценария прервано
-pause>nul
+echo.  \__/ 
+echo.  (oo)   Не найдены необходимые утилиты: %*
+echo. //^|^|\\  Отменяем запуск сценария
+>nul timeout /t 20
 exit
+
