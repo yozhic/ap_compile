@@ -6,25 +6,159 @@
 
 @echo off
 >nul chcp 866
-title BUILD AKELPAD DEBUG: DECLARE VARIABLES
-
-call reqcheck.cmd %~1
+setlocal enabledelayedexpansion
 
 set root=%~dp0
 set src=%root%src\
+set save=1
 
-if not exist %src%. (
-  echo.
-  cecho {0C}  „®«¦­  ¡ëâì ¯ ¯ª {#} {C0}src{#} {0C}¨ ¢ ­¥© ä ©«ë ¨áå®¤­¨ª®¢{#}{\n}
-  cecho {0C}  ‘¥©ç á íâ®© ¯ ¯ª¨ ­¥â ¨«¨ áªà¨¯â ¥ñ ­¥ ¢¨¤¨â{#}{\n}
-  cecho {0C}  à¥ªà é ¥¬ ¢ë¯®«­¥­¨¥ áæ¥­ à¨ï{#}{\n}
-  pause>NUL
-  exit
+call reqcheck.cmd %~1
+
+for %%x in (cmdmax.exe) do (
+  set FOUND=%%~$PATH:x
+  if exist "!FOUND!" cmdmax 0 0 160 80 160 80
 )
 
-cmdmax 0 0 160 80 160 80
+if not exist arguments.cfg (
+  >arguments.cfg echo./rv:r4544 /dt:%DATE% /cm:1 /tx:0 /bs:0 /db:0 /hs:1
+)
 
+set /p args=<arguments.cfg
+for %%a in (%args%) do call :args %%a
+
+for %%a in (%*) do call :args %%a
+
+title BUILD AKELPAD DEBUG: INFO REQUEST
 cls
+
+call :head
+
+cecho {08}  1. ®¬¥à à¥¤ ªæ¨¨:{\t 07}%rev%{\n}
+cecho {08}  2. „ â  à¥¤ ªæ¨¨:{\t  07}%data%{\n}
+cecho {07}
+if %hints%==1 echo.
+if %hints%==1 cecho {0E}  ¥¤ ªâ¨à®¢ ­¨¥ ­ áâà®¥ª{\n}
+if %hints%==1 cecho {08}     ®áâ ¢¨âì ª ª ¥áâì: {0E}Enter {08}¨«¨ «î¡ ï ª« ¢¨è {\n}
+if %hints%==1 cecho {08}     à¥¤ ªâ¨à®¢ âì ¢áñ: {0E}+{\n}
+if %hints%==1 cecho {08}             ¢ë¡®à®ç­®: {0E}2{08}, ­ ¯à¨¬¥à{\n}
+if %hints%==1 cecho {08}                      : {0B}
+if %hints%==0 cecho {08}                      ÿ {0B}
+
+set /p edit=
+cecho {07}
+
+>nul call jrepl "-" "" /s edit
+if %errorlevel%==0 (
+  set save=0
+  set edit=!edit: -=!
+  set edit=!edit:-=!
+)
+
+if "%edit%"==""  goto :go
+if "%edit%"=="+" (
+  if %hints%==0 cls & call :head
+  call :rev
+  call :data
+  goto :go
+)
+for %%a in (%edit%) do call :edit %%a
+
+:go
+if %save%==1 (
+  >arguments.cfg echo./rv:%rev% /dt:%data% /cm:%cont% /tx:%toolbarx% /bs:%buns% /db:%debugcmd% /hs:%hints%
+)
+
+set target=%root%build\%rev%d\
+set pdb=%target%pdb
+set debugcmd=0
+set toolbarx=0
+set cont=1
+set buns=0
+set debug=1
+set debugstr1= DEBUG
+set debugstr2=DEBUG version. 
+set param=/D
+
+echo.
+cecho {0B}
+echo.  ÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄ
+cecho {07}
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD DEBUG: MAKE DIRECTORIES TREE
+echo.&echo.
+cecho {08}  ‘®§¤ ñ¬ ¯ ¯ª¨...{#}
+start /min /wait debug_make_dirs.cmd
+cecho {\t\t\t 0B}ƒ®â®¢®.{\n #}
+>nul timeout /t 1
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD DEBUG: REFRESH BACKUPS
+cecho {08}  ®¤£®â ¢«¨¢ ¥¬ à¥áãàáë...{#}
+start /wait make_res_bkp.cmd
+cecho {\t\t 0B}ƒ®â®¢®.{\n #}
+>nul timeout /t 1
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD DEBUG: MAKE RESOURCES
+cecho {08}  ¥¤ ªâ¨àã¥¬ à¥áãàáë...{#}
+start /wait make_res.cmd
+cecho {\t\t 0B}ƒ®â®¢®.{\n #}
+>nul timeout /t 1
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD DEBUG: MAKE x86-x64 EXE
+cecho {08}  ‘®§¤ ñ¬ ¯à®£à ¬¬ë...{#}
+start /wait make_exe.cmd
+cecho {\t\t\t 0B}ƒ®â®¢®.{\n #}
+>nul timeout /t 1
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD DEBUG: MAKE x86 DLLS
+cecho {08}  ‘®§¤ ñ¬ 32-¡¨â­ë¥ ¡¨¡«¨®â¥ª¨...{#}
+start /wait make_dlls32.cmd
+cecho {\t 0B}ƒ®â®¢®.{\n #}
+>nul timeout /t 1
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD DEBUG: MAKE x64 DLLS
+cecho {08}  ‘®§¤ ñ¬ 64-¡¨â­ë¥ ¡¨¡«¨®â¥ª¨...{#}
+start /wait make_dlls64.cmd
+cecho {\t 0B}ƒ®â®¢®.{\n #}
+>nul timeout /t 1
+
+rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+title BUILD AKELPAD DEBUG: CREATE README.TXT
+cecho {08}  ‘®§¤ ñ¬ ReadMe.txt...{#}
+start /min /wait debug_make_readme.cmd
+cecho {\t\t\t 0B}ƒ®â®¢®.{\n #}
+
+for %%x in (rar.exe) do (set FOUNDRAR=%%~$PATH:x)
+if defined FOUNDRAR (
+  cecho {08}  ‘®§¤ ñ¬ rar...{#}
+  cd build
+  rar a -m5 -rr -inul %rev%d.rar %rev%d
+  cecho {\t\t\t 0B}ƒ®â®¢®.{\n #}
+)
+
+endlocal
+
+cecho {\n 0B}  ‘ŽŠ€ ‡€‚…˜…€{\n #}
+echo.
+cecho {0B}
+echo. ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+echo. ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+>nul timeout /t 15
+exit
+
+:head
 cecho {0B}
 echo.
 echo.   ßÛÞßÛÛÛ ßÛÞ ÛÛÛ ßÛÞßÛÛÛ ßÛÞß    ßÛÞßÛÛÛ ßÛÞßÛÛÛ ßÛÞßÛÛÛ        o       o                
@@ -39,143 +173,37 @@ echo. ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
 echo. ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
 echo.
 cecho {07}
+exit /b
 
-if not "%1"=="" (
-  set rev=%1
-  if not "%2"=="" (
-    set data=%2
-    goto :check
-  )
-)
+:rev
+if %hints%==1 cecho {0E}  1. ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{\n}
+if %hints%==1 cecho {08}     ä®à¬ â r4416: {0B}
+if %hints%==0 cecho {0E}  1. ®¬¥à à¥¤ ªæ¨¨: {\t 0B}
+set rev=
+set /p rev=
+if %hints%==1 echo.
+exit /b
 
-if not defined rev (
-  if not exist .\.rev (
-    setlocal enabledelayedexpansion
-    echo.& cecho {0E}  ‚‚Ž„ˆŒ ŽŒ… …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}r4416{#}:
-    cecho {0B}
-    set /p rev=
-    cecho {07}
-    echo !rev!>.rev
-    endlocal
-  )
-  set /p rev=<.rev
-)
+:data
+if %hints%==1 cecho {0E}  2. ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{\n}
+if %hints%==1 cecho {08}     ä®à¬ â %DATE%: {0B}
+if %hints%==0 cecho {0E}  2. „ â  à¥¤ ªæ¨¨: {\t 0B}
+set data=
+set /p data=
+if %hints%==1 echo.
+exit /b
 
-if not defined data (
-  if not exist .\.data (
-    (
-      setlocal enabledelayedexpansion
-      echo.& cecho {0E}  ‚‚Ž„ˆŒ „€’“ …„€Š–ˆˆ{#}{\n}  ­ ¯à¨¬¥à, {0E}%DATE%{#}:
-      cecho {0B}
-      set /p data=
-      cecho {07}
-      echo !data!>.data
-      endlocal
-    )
-    set /p data=<.data
-    goto :job
-  )
-  set /p data=<.data
-  goto :check
-)
+:args
+set b=%1
+if "!b:~1,2!"=="rv" set      rev=!b:/rv:=!
+if "!b:~1,2!"=="dt" set     data=!b:/dt:=!
+if "!b:~1,2!"=="cm" set     cont=!b:/cm:=!
+if "!b:~1,2!"=="tx" set toolbarx=!b:/tx:=!
+if "!b:~1,2!"=="bs" set     buns=!b:/bs:=!
+if "!b:~1,2!"=="db" set debugcmd=!b:/db:=!
+if "!b:~1,2!"=="hs" set    hints=!b:/hs:=!
 
-:check
-cecho {0B}
-echo.
-echo.  ŽŒ… …„€Š–ˆˆ: %rev%
-echo.  „€’€  …„€Š–ˆˆ: %data%
-cecho {07}
-
-echo.
-cecho {0E}  ‚áñ ¯à ¢¨«ì­®? à®¤®«¦ ¥¬?{#}{\n}
-cecho   …á«¨ ­¥ ¯à ¢¨«ì­®, ¢¢®¤¨¬ {E0}0{#} ¨ ¦¬ñ¬ Enter,{\n}
-cecho   ¥á«¨    ¯à ¢¨«ì­®, ¯à®áâ® ¦¬ñ¬ {E0}Enter{#}:
-cecho {B0}
-set /p err=
-cecho {07}
-
-if "%err%"=="0" goto :eof
-if not "%err%"=="" goto :eof
-
-:job
-set target=%root%build\%rev%d\
-set pdb=%target%pdb
-set debugcmd=0
-set toolbarx=0
-set cont=1
-set buns=0
-set debug=1
-set debugstr1= DEBUG
-set debugstr2=DEBUG version. 
-set param=/D
-
-rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-title BUILD AKELPAD DEBUG: MAKE DIRECTORIES TREE
-echo.&echo.
-cecho {08}  ‘®§¤ ñ¬ ¯ ¯ª¨...{#}
-start /min /wait debug_make_dirs.cmd
-cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
->nul timeout /t 1
-
-rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-title BUILD AKELPAD DEBUG: REFRESH BACKUPS
-cecho {08}  ®¤£®â ¢«¨¢ ¥¬ à¥áãàáë...{#}
-start /wait make_res_bkp.cmd
-cecho {0B}{\t\t}ƒ®â®¢®.{#}{\n}
->nul timeout /t 1
-
-rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-title BUILD AKELPAD DEBUG: MAKE RESOURCES
-cecho {08}  ¥¤ ªâ¨àã¥¬ à¥áãàáë...{#}
-start /wait make_res.cmd
-cecho {0B}{\t\t}ƒ®â®¢®.{#}{\n}
->nul timeout /t 1
-
-rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-title BUILD AKELPAD DEBUG: MAKE x86-x64 EXE
-cecho {08}  ‘®§¤ ñ¬ ¯à®£à ¬¬ë...{#}
-start /wait make_exe.cmd
-cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
->nul timeout /t 1
-
-rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-title BUILD AKELPAD DEBUG: MAKE x86 DLLS
-cecho {08}  ‘®§¤ ñ¬ 32-¡¨â­ë¥ ¡¨¡«¨®â¥ª¨...{#}
-start /wait make_dlls32.cmd
-cecho {0B}{\t}ƒ®â®¢®.{#}{\n}
->nul timeout /t 1
-
-rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-title BUILD AKELPAD DEBUG: MAKE x64 DLLS
-cecho {08}  ‘®§¤ ñ¬ 64-¡¨â­ë¥ ¡¨¡«¨®â¥ª¨...{#}
-start /wait make_dlls64.cmd
-cecho {0B}{\t}ƒ®â®¢®.{#}{\n}
->nul timeout /t 1
-
-rem ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-title BUILD AKELPAD DEBUG: CREATE README.TXT
-cecho {08}  ‘®§¤ ñ¬ ReadMe.txt...{#}
-start /min /wait debug_make_readme.cmd
-cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
-
-for %%x in (rar.exe) do (set FOUND=%%~$PATH:x)
-if defined FOUND (
-  cecho {08}  ‘®§¤ ñ¬ rar...{#}
-  cd build
-  rar a -m5 -rr -inul %rev%d.rar %rev%d
-  cecho {0B}{\t\t\t}ƒ®â®¢®.{#}{\n}
-)
-cecho {0B}{\n}  ‘ŽŠ€ ‡€‚…˜…€{#}{\n}
-echo.
-cecho {0B}
-echo. ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
-echo. ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
->nul timeout /t 15
-exit
+:edit
+set b=%1
+if "!b!"=="1" call :rev
+if "!b!"=="2" call :data
